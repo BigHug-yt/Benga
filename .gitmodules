@@ -1,0 +1,12 @@
+[submodule "Benga/vendor/spdlog"]
+	path = Benga/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Benga/vendor/GLFW"]
+	path = Benga/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "Benga/vendor/imgui"]
+	path = Benga/vendor/imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "Benga/vendor/glm"]
+	path = Benga/vendor/glm
+	url = https://github.com/g-truc/glm
