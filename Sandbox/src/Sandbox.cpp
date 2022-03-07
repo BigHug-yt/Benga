@@ -1,9 +1,18 @@
+#include <Benga.h>
 
-namespace Benga {
+class Sandbox : public Benga::Application {
 
-	__declspec(dllimport) void Print();
-}
+public:
+	Sandbox() {
 
-void main() {
-	Benga::Print();
+	}
+
+	~Sandbox() {
+
+	}
+};
+
+Benga::Application* Benga::CreateApplication() {
+
+	return new Sandbox();
 }
