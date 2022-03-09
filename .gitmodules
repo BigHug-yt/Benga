@@ -1,0 +1,3 @@
+[submodule "Benga/vendor/spdlog"]
+	path = Benga/vendor/spdlog
+	url = https://github.com/gabime/spdlog
