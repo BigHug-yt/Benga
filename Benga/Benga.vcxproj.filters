@@ -4,6 +4,9 @@
     <Filter Include="Benga">
       <UniqueIdentifier>{4295E20C-AEA9-0ABE-772B-AE1DE3FE06EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Benga\Events">
+      <UniqueIdentifier>{E682F77F-D2E5-8624-7B6B-BFDA67AD52A7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Benga.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Benga\EntryPoint.h">
       <Filter>Benga</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Events\ApplicationEvent.h">
+      <Filter>Benga\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Events\Event.h">
+      <Filter>Benga\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Events\KeyEvent.h">
+      <Filter>Benga\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Events\MouseEvent.h">
+      <Filter>Benga\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Benga\Log.h">
       <Filter>Benga</Filter>
