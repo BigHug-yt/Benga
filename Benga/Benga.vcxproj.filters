@@ -34,6 +34,7 @@
     <ClInclude Include="src\Benga\Log.h">
       <Filter>Benga</Filter>
     </ClInclude>
+    <ClInclude Include="src\bgpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Benga\Log.cpp">
       <Filter>Benga</Filter>
     </ClCompile>
+    <ClCompile Include="src\bgpch.cpp" />
   </ItemGroup>
 </Project>

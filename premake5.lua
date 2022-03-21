@@ -18,6 +18,9 @@ project "Benga"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "bgpch.h"
+	pchsource "Benga/src/bgpch.cpp"
+
 	files {
 
 		"%{prj.name}/src/**.h",

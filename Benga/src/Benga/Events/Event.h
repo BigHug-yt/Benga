@@ -1,9 +1,7 @@
 #pragma once
 
+#include "bgpch.h"
 #include "Benga/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Benga {
 

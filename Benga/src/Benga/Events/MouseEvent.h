@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Benga {
 
 	class BENGA_API MouseMovedEvent : public Event {

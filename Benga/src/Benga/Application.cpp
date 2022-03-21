@@ -1,3 +1,4 @@
+#include "bgpch.h"
 #include "Application.h"
 
 #include "Benga/Events/ApplicationEvent.h"
