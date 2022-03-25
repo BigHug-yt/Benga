@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Benga/Log.h"
+
 #ifdef BG_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

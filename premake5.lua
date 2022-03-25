@@ -10,6 +10,11 @@ workspace "Benga"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Benga/vendor/GLFW/include"
+
+include "Benga/vendor/GLFW"
+
 project "Benga"
 	location "Benga"
 	kind "SharedLib"
@@ -30,7 +35,13 @@ project "Benga"
 	includedirs {
 
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

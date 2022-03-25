@@ -1,3 +1,6 @@
 [submodule "Benga/vendor/spdlog"]
 	path = Benga/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Benga/vendor/GLFW"]
+	path = Benga/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW

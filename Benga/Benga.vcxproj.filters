@@ -7,6 +7,12 @@
     <Filter Include="Benga\Events">
       <UniqueIdentifier>{E682F77F-D2E5-8624-7B6B-BFDA67AD52A7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Benga.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\Benga\Log.h">
       <Filter>Benga</Filter>
     </ClInclude>
+    <ClInclude Include="src\Benga\Window.h">
+      <Filter>Benga</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\bgpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\Benga\Log.cpp">
       <Filter>Benga</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\bgpch.cpp" />
   </ItemGroup>
