@@ -37,6 +37,12 @@
     <ClInclude Include="src\Benga\Events\MouseEvent.h">
       <Filter>Benga\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Benga\Layer.h">
+      <Filter>Benga</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\LayerStack.h">
+      <Filter>Benga</Filter>
+    </ClInclude>
     <ClInclude Include="src\Benga\Log.h">
       <Filter>Benga</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
+      <Filter>Benga</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\Layer.cpp">
+      <Filter>Benga</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\LayerStack.cpp">
       <Filter>Benga</Filter>
     </ClCompile>
     <ClCompile Include="src\Benga\Log.cpp">

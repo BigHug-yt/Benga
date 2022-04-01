@@ -62,14 +62,17 @@ project "Benga"
 
 	filter "configurations:Debug"
 		defines "BG_DEBUG"
+		buildoptions "/MDd"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "BG_RELEASE"
+		buildoptions "/MD"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BG_DIST"
+		buildoptions "/MD"
 		optimize "on"
 
 project "Sandbox"
@@ -109,12 +112,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "BG_DEBUG"
+		buildoptions "/MDd"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "BG_RELEASE"
+		buildoptions "/MD"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BG_DIST"
+		buildoptions "/MD"
 		optimize "on"
