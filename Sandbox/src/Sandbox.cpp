@@ -25,6 +25,7 @@ class Sandbox : public Benga::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Benga::ImGuiLayer());
 	}
 
 	~Sandbox() {

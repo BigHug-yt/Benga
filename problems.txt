@@ -1,1 +1,0 @@
-the standard sharedlib option doesn't compile, so you have to go to Benga project properties -> C/C++ -> Code Generation -> and set Runtime Library to /MDd

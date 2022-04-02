@@ -4,3 +4,6 @@
 [submodule "Benga/vendor/GLFW"]
 	path = Benga/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
+[submodule "Benga/vendor/Imgui"]
+	path = Benga/vendor/Imgui
+	url = https://github.com/TheCherno/imgui
