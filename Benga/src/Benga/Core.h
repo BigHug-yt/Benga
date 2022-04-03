@@ -10,6 +10,10 @@
 	#error Benga only supports Windows!
 #endif
 
+#ifdef BG_DEBUG
+	#define BG_ENABLE_ASSERTS
+#endif
+
 #ifdef BG_ENABLE_ASSERTS
 	#define BG_ASSERT(x, ...) { if(!(x)) { BG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define BG_CORE_ASSERT(x, ...) { if(!(x)) { BG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
