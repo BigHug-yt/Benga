@@ -159,9 +159,11 @@
     <ClInclude Include="src\Benga\Events\MouseEvent.h" />
     <ClInclude Include="src\Benga\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Benga\Input.h" />
+    <ClInclude Include="src\Benga\KeyCodes.h" />
     <ClInclude Include="src\Benga\Layer.h" />
     <ClInclude Include="src\Benga\LayerStack.h" />
     <ClInclude Include="src\Benga\Log.h" />
+    <ClInclude Include="src\Benga\MouseButtonCodes.h" />
     <ClInclude Include="src\Benga\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />

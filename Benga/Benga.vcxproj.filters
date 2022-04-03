@@ -67,6 +67,8 @@
     <ClInclude Include="src\bgpch.h" />
     <ClInclude Include="src\Benga\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Benga\KeyCodes.h" />
+    <ClInclude Include="src\Benga\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">

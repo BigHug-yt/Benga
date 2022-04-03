@@ -10,12 +10,17 @@ public:
 
 	void OnUpdate() override {
 
-		BG_INFO("ExampleLayer::Update");
+		if (Benga::Input::IsKeyPressed(BG_KEY_TAB))
+			BG_TRACE("Tab key is pressed");
 	}
 
 	void OnEvent(Benga::Event& event) override {
 
-		BG_TRACE("{0}", event);
+		if (event.GetEventType() == Benga::EventType::KeyPressed) {
+
+			Benga::KeyPressedEvent& e = (Benga::KeyPressedEvent&)event;
+			BG_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 
 };

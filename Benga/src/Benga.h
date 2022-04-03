@@ -6,6 +6,10 @@
 #include "Benga/Layer.h"
 #include "Benga/Log.h"
 
+#include "Benga/Input.h"
+#include "Benga/KeyCodes.h"
+#include "Benga/MouseButtonCodes.h"
+
 #include "Benga/ImGui/ImGuiLayer.h"
 
 
