@@ -165,7 +165,6 @@
     <ClInclude Include="src\Benga\Log.h" />
     <ClInclude Include="src\Benga\MouseButtonCodes.h" />
     <ClInclude Include="src\Benga\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\bgpch.h" />
@@ -587,11 +586,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp" />
+    <ClCompile Include="src\Benga\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Benga\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Benga\Layer.cpp" />
     <ClCompile Include="src\Benga\LayerStack.cpp" />
     <ClCompile Include="src\Benga\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\bgpch.cpp">

@@ -7,6 +7,8 @@
 #include "Benga/Events/Event.h"
 #include "Benga/Events/ApplicationEvent.h"
 
+#include "Benga/ImGui/ImGuiLayer.h"
+
 
 namespace Benga {
 
@@ -30,6 +32,7 @@ namespace Benga {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

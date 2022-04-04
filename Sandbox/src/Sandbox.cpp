@@ -1,5 +1,7 @@
 #include <Benga.h>
 
+#include "Imgui/imgui.h"
+
 class ExampleLayer : public Benga::Layer {
 
 public:
@@ -12,6 +14,13 @@ public:
 
 		if (Benga::Input::IsKeyPressed(BG_KEY_TAB))
 			BG_TRACE("Tab key is pressed");
+	}
+
+	virtual void OnImGuiRender() override {
+
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Benga::Event& event) override {
@@ -29,8 +38,8 @@ class Sandbox : public Benga::Application {
 
 public:
 	Sandbox() {
+
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Benga::ImGuiLayer());
 	}
 
 	~Sandbox() {
