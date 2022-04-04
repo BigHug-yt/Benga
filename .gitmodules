@@ -7,3 +7,6 @@
 [submodule "Benga/vendor/Imgui"]
 	path = Benga/vendor/Imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Benga/vendor/glm"]
+	path = Benga/vendor/glm
+	url = https://github.com/g-truc/glm
