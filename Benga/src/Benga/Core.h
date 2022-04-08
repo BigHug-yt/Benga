@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef BG_PLATFORM_WINDOWS
-	#ifdef BG_BUILD_DLL
-		#define BENGA_API __declspec(dllexport)
+	#if BG_DYNAMIC_LINK
+		#ifdef BG_BUILD_DLL
+			#define BENGA_API __declspec(dllexport)
+		#else
+			#define BENGA_API __declspec(dllimport)
+		#endif
 	#else
-		#define BENGA_API __declspec(dllimport)
+		#define BENGA_API
 	#endif
 #else
 	#error Benga only supports Windows!
