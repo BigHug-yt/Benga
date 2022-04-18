@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Benga/Window.h"
+#include "Benga/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Benga {
 
@@ -28,6 +30,7 @@ namespace Benga {
 		virtual void ShutDown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData {
 

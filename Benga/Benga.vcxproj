@@ -154,7 +154,9 @@
     <ClInclude Include="src\Benga\LayerStack.h" />
     <ClInclude Include="src\Benga\Log.h" />
     <ClInclude Include="src\Benga\MouseButtonCodes.h" />
+    <ClInclude Include="src\Benga\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Benga\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\bgpch.h" />
@@ -526,6 +528,7 @@
     <ClCompile Include="src\Benga\Layer.cpp" />
     <ClCompile Include="src\Benga\LayerStack.cpp" />
     <ClCompile Include="src\Benga\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\bgpch.cpp">
