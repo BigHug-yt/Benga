@@ -9,6 +9,8 @@
 #include "Benga/Events/KeyEvent.h"
 #include "Benga/Events/MouseEvent.h"
 
+#include "Benga/Renderer/Shader.h"
+
 
 namespace Benga {
 
@@ -36,6 +38,7 @@ namespace Benga {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};

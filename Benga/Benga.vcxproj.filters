@@ -1181,6 +1181,7 @@
     </ClInclude>
     <ClInclude Include="src\Benga\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Benga\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
@@ -1205,5 +1206,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Benga\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
