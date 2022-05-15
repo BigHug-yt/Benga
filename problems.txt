@@ -1,0 +1,2 @@
+not really a problem, but at the moment, at lines 12 and 37 in Benga/src/Platform/OpenGL/OpenGLBuffer.cpp, I'm using glGenBuffers instead of glCreateBuffers
+this apparently has something to do with my GPU not supporting OpenGL 4.5 (I don't know why, as my pc is relatively up to date)
