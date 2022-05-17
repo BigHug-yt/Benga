@@ -158,9 +158,11 @@
     <ClInclude Include="src\Benga\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Benga\Renderer\Renderer.h" />
     <ClInclude Include="src\Benga\Renderer\Shader.h" />
+    <ClInclude Include="src\Benga\Renderer\VertexArray.h" />
     <ClInclude Include="src\Benga\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\bgpch.h" />
@@ -535,8 +537,10 @@
     <ClCompile Include="src\Benga\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Benga\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Benga\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Benga\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\bgpch.cpp">

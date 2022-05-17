@@ -11,7 +11,7 @@
 
 #include "Benga/Renderer/Shader.h"
 #include "Benga/Renderer/Buffer.h"
-
+#include "Benga/Renderer/VertexArray.h"
 
 namespace Benga {
 
@@ -38,10 +38,11 @@ namespace Benga {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_YelShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};
