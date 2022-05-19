@@ -10,6 +10,16 @@
 #include "Benga/KeyCodes.h"
 #include "Benga/MouseButtonCodes.h"
 
+// ---Renderer-----
+#include "Benga/Renderer/Renderer.h"
+#include "Benga/Renderer/RenderCommand.h"
+
+#include "Benga/Renderer/Buffer.h"
+#include "Benga/Renderer/Shader.h"
+#include "Benga/Renderer/VertexArray.h"
+
+#include "Benga/Renderer/OrthographicCamera.h"
+
 // ---Entry Point---
 #include "Benga/EntryPoint.h"
 // -----------------
