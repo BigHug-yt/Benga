@@ -1208,6 +1208,7 @@
     <ClInclude Include="src\Benga\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Benga\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Benga\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
@@ -1251,5 +1252,6 @@
     <ClCompile Include="src\Benga\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Benga\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Benga\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

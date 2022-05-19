@@ -156,6 +156,7 @@
     <ClInclude Include="src\Benga\MouseButtonCodes.h" />
     <ClInclude Include="src\Benga\Renderer\Buffer.h" />
     <ClInclude Include="src\Benga\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Benga\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Benga\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Benga\Renderer\Renderer.h" />
     <ClInclude Include="src\Benga\Renderer\RendererAPI.h" />
@@ -538,6 +539,7 @@
     <ClCompile Include="src\Benga\LayerStack.cpp" />
     <ClCompile Include="src\Benga\Log.cpp" />
     <ClCompile Include="src\Benga\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Benga\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Benga\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Benga\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Benga\Renderer\RendererAPI.cpp" />

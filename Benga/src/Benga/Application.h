@@ -13,6 +13,8 @@
 #include "Benga/Renderer/Buffer.h"
 #include "Benga/Renderer/VertexArray.h"
 
+#include "Benga/Renderer/OrthographicCamera.h"
+
 namespace Benga {
 
 	class BENGA_API Application {
@@ -43,6 +45,8 @@ namespace Benga {
 
 		std::shared_ptr<Shader> m_YelShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
