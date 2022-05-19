@@ -6,7 +6,7 @@
 
 namespace Benga {
 
-	class BENGA_API Log
+	class Log
 	{
 	public:
 		static void Init();

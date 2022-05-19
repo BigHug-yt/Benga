@@ -21,7 +21,7 @@ namespace Benga {
 		}
 	};
 
-	class BENGA_API Window {
+	class Window {
 
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

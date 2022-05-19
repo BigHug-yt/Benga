@@ -7,7 +7,7 @@
 
 namespace Benga {
 
-	class BENGA_API LayerStack {
+	class LayerStack {
 
 	public:
 		LayerStack();

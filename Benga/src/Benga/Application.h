@@ -9,15 +9,9 @@
 #include "Benga/Events/KeyEvent.h"
 #include "Benga/Events/MouseEvent.h"
 
-#include "Benga/Renderer/Shader.h"
-#include "Benga/Renderer/Buffer.h"
-#include "Benga/Renderer/VertexArray.h"
-
-#include "Benga/Renderer/OrthographicCamera.h"
-
 namespace Benga {
 
-	class BENGA_API Application {
+	class Application {
 
 	public:
 		Application();
