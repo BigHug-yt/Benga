@@ -143,6 +143,7 @@
     <ClInclude Include="src\Benga.h" />
     <ClInclude Include="src\Benga\Application.h" />
     <ClInclude Include="src\Benga\Core.h" />
+    <ClInclude Include="src\Benga\Core\Timestep.h" />
     <ClInclude Include="src\Benga\EntryPoint.h" />
     <ClInclude Include="src\Benga\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Benga\Events\Event.h" />

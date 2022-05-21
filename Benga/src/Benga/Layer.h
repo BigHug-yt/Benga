@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Benga/Core.h"
+#include "Benga/Core/Timestep.h"
 #include "Benga/Events/Event.h"
 
 namespace Benga {
@@ -13,7 +14,7 @@ namespace Benga {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnEvent(Event& event) {}
 
 		inline const std::string& GetName() const { return m_DebugName; }
