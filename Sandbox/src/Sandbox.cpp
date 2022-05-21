@@ -20,7 +20,7 @@ public:
 		};
 
 
-		std::shared_ptr<Benga::VertexBuffer> vertexBuffer;
+		Benga::Ref<Benga::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Benga::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Benga::BufferLayout layout = {
 			{ Benga::ShaderDataType::Float3, "a_Position" },
@@ -31,7 +31,7 @@ public:
 
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Benga::IndexBuffer> indexBuffer;
+		Benga::Ref<Benga::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Benga::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -44,7 +44,7 @@ public:
 			-0.5f, 0.5f, 0.0f
 		};
 
-		std::shared_ptr<Benga::VertexBuffer> squareVB;
+		Benga::Ref<Benga::VertexBuffer> squareVB;
 		squareVB.reset(Benga::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Benga::ShaderDataType::Float3, "a_Position" }
@@ -52,7 +52,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Benga::IndexBuffer> squareIB;
+		Benga::Ref<Benga::IndexBuffer> squareIB;
 		squareIB.reset(Benga::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -184,11 +184,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<Benga::Shader> m_Shader;
-	std::shared_ptr<Benga::VertexArray> m_VertexArray;
+	Benga::Ref<Benga::Shader> m_Shader;
+	Benga::Ref<Benga::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Benga::Shader> m_FlatColorShader;
-	std::shared_ptr<Benga::VertexArray> m_SquareVA;
+	Benga::Ref<Benga::Shader> m_FlatColorShader;
+	Benga::Ref<Benga::VertexArray> m_SquareVA;
 
 	Benga::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

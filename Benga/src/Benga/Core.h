@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef BG_PLATFORM_WINDOWS
 	#if BG_DYNAMIC_LINK
 		#ifdef BG_BUILD_DLL
@@ -29,3 +31,13 @@
 #define BIT(x) (1 << x)
 
 #define BG_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Benga {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}
