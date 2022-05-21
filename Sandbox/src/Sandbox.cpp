@@ -1,6 +1,9 @@
 #include <Benga.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Benga::Layer {
 
@@ -90,7 +93,7 @@ public:
 
 		)";
 
-		m_Shader.reset(new Benga::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Benga::Shader::Create(vertexSrc, fragmentSrc));
 
 		std::string YelvertexSrc = R"(
 			#version 330 core
@@ -110,21 +113,23 @@ public:
 
 		)";
 
-		std::string YelfragmentSrc = R"(
+		std::string flatColorShaderfragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 
 			in  vec3 v_Position;
 
+			uniform vec3 u_Color;
+
 			void main() {
 				
-				color = vec4(1.0, 1.0, 0.0, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 
 		)";
 
-		m_YelShader.reset(new Benga::Shader(YelvertexSrc, YelfragmentSrc));
+		m_FlatColorShader.reset(Benga::Shader::Create(YelvertexSrc, flatColorShaderfragmentSrc));
 	}
 
 	void OnUpdate(Benga::Timestep ts) override {
@@ -155,14 +160,17 @@ public:
 
 		Benga::Renderer::BeginScene(m_Camera);
 
-		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
 
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Benga::Renderer::Submit(m_YelShader, m_SquareVA, transform);
+				Benga::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 
@@ -179,7 +187,7 @@ private:
 	std::shared_ptr<Benga::Shader> m_Shader;
 	std::shared_ptr<Benga::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Benga::Shader> m_YelShader;
+	std::shared_ptr<Benga::Shader> m_FlatColorShader;
 	std::shared_ptr<Benga::VertexArray> m_SquareVA;
 
 	Benga::OrthographicCamera m_Camera;
@@ -188,6 +196,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquareColor = { 0.0f, 0.0f, 1.0f };
 };
 
 class Sandbox : public Benga::Application {
