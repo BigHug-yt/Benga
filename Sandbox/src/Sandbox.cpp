@@ -37,17 +37,18 @@ public:
 
 		m_SquareVA.reset(Benga::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.5f, 0.5f, 0.0f,
-			-0.5f, 0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		Benga::Ref<Benga::VertexBuffer> squareVB;
 		squareVB.reset(Benga::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Benga::ShaderDataType::Float3, "a_Position" }
+			{ Benga::ShaderDataType::Float3, "a_Position" },
+			{ Benga::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -95,7 +96,7 @@ public:
 
 		m_Shader.reset(Benga::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string YelvertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -129,7 +130,51 @@ public:
 
 		)";
 
-		m_FlatColorShader.reset(Benga::Shader::Create(YelvertexSrc, flatColorShaderfragmentSrc));
+		m_FlatColorShader.reset(Benga::Shader::Create(flatColorShaderVertexSrc, flatColorShaderfragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main() {
+				
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform  * vec4(a_Position, 1.0);
+			}
+
+		)";
+
+		std::string textureShaderfragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in  vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main() {
+				
+				color = texture(u_Texture, v_TexCoord);
+			}
+
+		)";
+
+		m_TextureShader.reset(Benga::Shader::Create(textureShaderVertexSrc, textureShaderfragmentSrc));
+
+
+		m_Texture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
+		m_RickTexture = Benga::Texture2D::Create("assets/textures/Rick.png");
+
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Benga::Timestep ts) override {
@@ -174,7 +219,13 @@ public:
 			}
 		}
 
-		Benga::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Benga::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_RickTexture->Bind();
+		Benga::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		// Triangle
+		// Benga::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Benga::Renderer::EndScene();
 	}
@@ -187,8 +238,10 @@ private:
 	Benga::Ref<Benga::Shader> m_Shader;
 	Benga::Ref<Benga::VertexArray> m_VertexArray;
 
-	Benga::Ref<Benga::Shader> m_FlatColorShader;
+	Benga::Ref<Benga::Shader> m_FlatColorShader, m_TextureShader;
 	Benga::Ref<Benga::VertexArray> m_SquareVA;
+
+	Benga::Ref<Benga::Texture2D> m_Texture, m_RickTexture;
 
 	Benga::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

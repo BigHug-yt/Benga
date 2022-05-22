@@ -18,6 +18,7 @@
 
 #include "Benga/Renderer/Buffer.h"
 #include "Benga/Renderer/Shader.h"
+#include "Benga/Renderer/Texture.h"
 #include "Benga/Renderer/VertexArray.h"
 
 #include "Benga/Renderer/OrthographicCamera.h"

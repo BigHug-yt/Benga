@@ -7,6 +7,9 @@
     <Filter Include="src\Benga">
       <UniqueIdentifier>{99A39FB2-050E-5429-4E4C-05CFBAF5317E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Benga\Core">
+      <UniqueIdentifier>{91EF3BCF-7DBD-2FD5-6651-A0FB52BE0B3A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Benga\Events">
       <UniqueIdentifier>{5D291893-4922-37E5-7254-1C6A5EAC16F1}</UniqueIdentifier>
     </Filter>
@@ -43,6 +46,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Benga.h">
@@ -53,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="src\Benga\Core.h">
       <Filter>src\Benga</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Core\Timestep.h">
+      <Filter>src\Benga\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Benga\EntryPoint.h">
       <Filter>src\Benga</Filter>
@@ -93,10 +102,25 @@
     <ClInclude Include="src\Benga\Renderer\GraphicsContext.h">
       <Filter>src\Benga\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Benga\Renderer\OrthographicCamera.h">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Renderer\RenderCommand.h">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Benga\Renderer\Renderer.h">
       <Filter>src\Benga\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Benga\Renderer\RendererAPI.h">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Benga\Renderer\Shader.h">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Renderer\Texture.h">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\Renderer\VertexArray.h">
       <Filter>src\Benga\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Benga\Window.h">
@@ -106,6 +130,18 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -1203,14 +1239,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Benga\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Benga\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Benga\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Benga\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Benga\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
@@ -1228,16 +1259,43 @@
     <ClCompile Include="src\Benga\Renderer\Buffer.cpp">
       <Filter>src\Benga\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Benga\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\Renderer\RenderCommand.cpp">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Benga\Renderer\Renderer.cpp">
       <Filter>src\Benga\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Benga\Renderer\RendererAPI.cpp">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Benga\Renderer\Shader.cpp">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\Renderer\Texture.cpp">
+      <Filter>src\Benga\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\Renderer\VertexArray.cpp">
       <Filter>src\Benga\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1249,12 +1307,8 @@
     <ClCompile Include="src\bgpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Benga\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Benga\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Benga\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Benga\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
