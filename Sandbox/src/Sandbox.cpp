@@ -94,7 +94,7 @@ public:
 
 		)";
 
-		m_Shader.reset(Benga::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Benga::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -130,15 +130,15 @@ public:
 
 		)";
 
-		m_FlatColorShader.reset(Benga::Shader::Create(flatColorShaderVertexSrc, flatColorShaderfragmentSrc));
+		m_FlatColorShader = Benga::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderfragmentSrc);
 
-		m_TextureShader.reset(Benga::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
 		m_RickTexture = Benga::Texture2D::Create("assets/textures/Rick.png");
 
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Benga::Timestep ts) override {
@@ -183,10 +183,12 @@ public:
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		Benga::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Benga::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_RickTexture->Bind();
-		Benga::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Benga::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
 		// Benga::Renderer::Submit(m_Shader, m_VertexArray);
@@ -199,10 +201,11 @@ public:
 	}
 
 private:
+	Benga::ShaderLibrary m_ShaderLibrary;
 	Benga::Ref<Benga::Shader> m_Shader;
 	Benga::Ref<Benga::VertexArray> m_VertexArray;
 
-	Benga::Ref<Benga::Shader> m_FlatColorShader, m_TextureShader;
+	Benga::Ref<Benga::Shader> m_FlatColorShader;
 	Benga::Ref<Benga::VertexArray> m_SquareVA;
 
 	Benga::Ref<Benga::Texture2D> m_Texture, m_RickTexture;
