@@ -9,7 +9,7 @@ class ExampleLayer : public Benga::Layer {
 
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) {
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true) {
 
 		m_VertexArray.reset(Benga::VertexArray::Create());
 
@@ -143,31 +143,14 @@ public:
 
 	void OnUpdate(Benga::Timestep ts) override {
 
-		if (Benga::Input::IsKeyPressed(BG_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		else if (Benga::Input::IsKeyPressed(BG_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-		if (Benga::Input::IsKeyPressed(BG_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		else if (Benga::Input::IsKeyPressed(BG_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-
-		if (Benga::Input::IsKeyPressed(BG_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (Benga::Input::IsKeyPressed(BG_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
-
+		// Render
 		Benga::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Benga::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Benga::Renderer::BeginScene(m_Camera);
+		Benga::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -196,8 +179,9 @@ public:
 		Benga::Renderer::EndScene();
 	}
 
-	void OnEvent(Benga::Event& event) override {
+	void OnEvent(Benga::Event& e) override {
 
+		m_CameraController.OnEvent(e);
 	}
 
 private:
@@ -210,12 +194,7 @@ private:
 
 	Benga::Ref<Benga::Texture2D> m_Texture, m_RickTexture;
 
-	Benga::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Benga::OrthoGraphicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.0f, 0.0f, 1.0f };
 };

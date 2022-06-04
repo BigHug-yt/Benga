@@ -1242,6 +1242,9 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Benga\OrthographicCameraController.h">
+      <Filter>src\Benga</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Benga\Application.cpp">
@@ -1309,6 +1312,9 @@
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\OrthographicCameraController.cpp">
+      <Filter>src\Benga</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

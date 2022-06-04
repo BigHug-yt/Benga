@@ -42,7 +42,7 @@ namespace Benga {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseMoved)
+		EVENT_CLASS_TYPE(MouseScrolled)
 		Event_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
 		float m_XOffset, m_YOffset;

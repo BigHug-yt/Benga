@@ -11,6 +11,7 @@
 #include "Benga/Input.h"
 #include "Benga/KeyCodes.h"
 #include "Benga/MouseButtonCodes.h"
+#include "Benga/OrthographicCameraController.h"
 
 // ---Renderer-----
 #include "Benga/Renderer/Renderer.h"
