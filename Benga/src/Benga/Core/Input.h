@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Core.h"
+#include "Benga/Core/Core.h"
 
 namespace Benga {
 

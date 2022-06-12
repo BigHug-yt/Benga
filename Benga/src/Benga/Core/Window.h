@@ -2,7 +2,7 @@
 
 #include "bgpch.h"
 
-#include "Benga/Core.h"
+#include "Benga/Core/Core.h"
 #include "Benga/Events/Event.h"
 
 namespace Benga {

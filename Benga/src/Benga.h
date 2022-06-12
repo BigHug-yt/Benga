@@ -2,16 +2,16 @@
 
 // For use by Benga applications only
 
-#include "Benga/Application.h"
-#include "Benga/Layer.h"
-#include "Benga/Log.h"
+#include "Benga/Core/Application.h"
+#include "Benga/Core/Layer.h"
+#include "Benga/Core/Log.h"
 
 #include "Benga/Core/Timestep.h"
 
-#include "Benga/Input.h"
-#include "Benga/KeyCodes.h"
-#include "Benga/MouseButtonCodes.h"
-#include "Benga/OrthographicCameraController.h"
+#include "Benga/Core/Input.h"
+#include "Benga/Core/KeyCodes.h"
+#include "Benga/Core/MouseButtonCodes.h"
+#include "Benga/Renderer/OrthographicCameraController.h"
 
 // ---Renderer-----
 #include "Benga/Renderer/Renderer.h"
@@ -25,5 +25,5 @@
 #include "Benga/Renderer/OrthographicCamera.h"
 
 // ---Entry Point---
-#include "Benga/EntryPoint.h"
+#include "Benga/Core/EntryPoint.h"
 // -----------------

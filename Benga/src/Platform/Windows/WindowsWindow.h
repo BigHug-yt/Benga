@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Window.h"
+#include "Benga/Core/Window.h"
 #include "Benga/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

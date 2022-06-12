@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Input.h"
+#include "Benga/Core/Input.h"
 
 namespace Benga {
 

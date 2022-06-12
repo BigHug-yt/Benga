@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Benga/Log.h"
+#include "Benga/Core/Log.h"
 
 #ifdef BG_PLATFORM_WINDOWS
 	#include <Windows.h>

@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Benga/LayerStack.h"
+#include "Benga/Core/LayerStack.h"
 #include "Benga/Events/Event.h"
 #include "Benga/Events/ApplicationEvent.h"
 #include "Benga/Events/KeyEvent.h"

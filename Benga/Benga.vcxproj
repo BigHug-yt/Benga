@@ -141,31 +141,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Benga.h" />
-    <ClInclude Include="src\Benga\Application.h" />
-    <ClInclude Include="src\Benga\Core.h" />
+    <ClInclude Include="src\Benga\Core\Application.h" />
+    <ClInclude Include="src\Benga\Core\Core.h" />
+    <ClInclude Include="src\Benga\Core\EntryPoint.h" />
+    <ClInclude Include="src\Benga\Core\Input.h" />
+    <ClInclude Include="src\Benga\Core\KeyCodes.h" />
+    <ClInclude Include="src\Benga\Core\Layer.h" />
+    <ClInclude Include="src\Benga\Core\LayerStack.h" />
+    <ClInclude Include="src\Benga\Core\Log.h" />
+    <ClInclude Include="src\Benga\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Benga\Core\Timestep.h" />
-    <ClInclude Include="src\Benga\EntryPoint.h" />
+    <ClInclude Include="src\Benga\Core\Window.h" />
     <ClInclude Include="src\Benga\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Benga\Events\Event.h" />
     <ClInclude Include="src\Benga\Events\KeyEvent.h" />
     <ClInclude Include="src\Benga\Events\MouseEvent.h" />
-    <ClInclude Include="src\Benga\Input.h" />
-    <ClInclude Include="src\Benga\KeyCodes.h" />
-    <ClInclude Include="src\Benga\Layer.h" />
-    <ClInclude Include="src\Benga\LayerStack.h" />
-    <ClInclude Include="src\Benga\Log.h" />
-    <ClInclude Include="src\Benga\MouseButtonCodes.h" />
-    <ClInclude Include="src\Benga\OrthographicCameraController.h" />
     <ClInclude Include="src\Benga\Renderer\Buffer.h" />
     <ClInclude Include="src\Benga\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Benga\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Benga\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Benga\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Benga\Renderer\Renderer.h" />
     <ClInclude Include="src\Benga\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Benga\Renderer\Shader.h" />
     <ClInclude Include="src\Benga\Renderer\Texture.h" />
     <ClInclude Include="src\Benga\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Benga\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -540,13 +540,13 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Benga\Application.cpp" />
-    <ClCompile Include="src\Benga\Layer.cpp" />
-    <ClCompile Include="src\Benga\LayerStack.cpp" />
-    <ClCompile Include="src\Benga\Log.cpp" />
-    <ClCompile Include="src\Benga\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Benga\Core\Application.cpp" />
+    <ClCompile Include="src\Benga\Core\Layer.cpp" />
+    <ClCompile Include="src\Benga\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Benga\Core\Log.cpp" />
     <ClCompile Include="src\Benga\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Benga\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Benga\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Benga\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Benga\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Benga\Renderer\RendererAPI.cpp" />

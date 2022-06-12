@@ -1,7 +1,7 @@
 #include "bgpch.h"
 #include "Application.h"
 
-#include "Benga/Log.h"
+#include "Benga/Core/Log.h"
 
 #include "Benga/Renderer/Renderer.h"
 

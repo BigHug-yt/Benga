@@ -1,7 +1,7 @@
 #include "bgpch.h"
 #include "WindowsInput.h"
 
-#include "Benga/Application.h"
+#include "Benga/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Benga {

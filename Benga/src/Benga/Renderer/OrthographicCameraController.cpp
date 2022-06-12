@@ -1,8 +1,8 @@
 #include "bgpch.h"
 #include "OrthographicCameraController.h"
 
-#include "Benga/Input.h"
-#include "Benga/KeyCodes.h"
+#include "Benga/Core/Input.h"
+#include "Benga/Core/KeyCodes.h"
 
 namespace Benga {
 
