@@ -135,7 +135,7 @@ public:
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
-		m_RickTexture = Benga::Texture2D::Create("assets/textures/Rick.png");
+		m_PolandTexture = Benga::Texture2D::Create("assets/textures/poland.png");
 
 		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->Bind();
 		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
@@ -170,7 +170,7 @@ public:
 
 		m_Texture->Bind();
 		Benga::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		m_RickTexture->Bind();
+		m_PolandTexture->Bind();
 		Benga::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
@@ -192,7 +192,7 @@ private:
 	Benga::Ref<Benga::Shader> m_FlatColorShader;
 	Benga::Ref<Benga::VertexArray> m_SquareVA;
 
-	Benga::Ref<Benga::Texture2D> m_Texture, m_RickTexture;
+	Benga::Ref<Benga::Texture2D> m_Texture, m_PolandTexture;
 
 	Benga::OrthoGraphicCameraController m_CameraController;
 
