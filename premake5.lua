@@ -9,6 +9,11 @@ workspace "Benga"
 		"Dist"
 	}
 
+	flags {
+
+		"MultiProcessorCompile"
+	}
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
@@ -17,8 +22,11 @@ IncludeDir["Glad"] = "Benga/vendor/Glad/include"
 IncludeDir["glm"] = "Benga/vendor/glm"
 IncludeDir["stb_image"] = "Benga/vendor/stb_image"
 
-include "Benga/vendor/GLFW"
-include "Benga/vendor/Glad"
+group "Dependencies"
+	include "Benga/vendor/GLFW"
+	include "Benga/vendor/Glad"
+	
+group ""
 
 project "Benga"
 	location "Benga"
@@ -69,7 +77,6 @@ project "Benga"
 
 		defines {
 
-			"BG_PLATFORM_WINDOWS",
 			"BG_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -120,11 +127,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines {
-
-			"BG_PLATFORM_WINDOWS"
-		}
 
 	filter "configurations:Debug"
 		defines "BG_DEBUG"
