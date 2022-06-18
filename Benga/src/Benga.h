@@ -23,7 +23,4 @@
 #include "Benga/Renderer/VertexArray.h"
 
 #include "Benga/Renderer/OrthographicCamera.h"
-
-// ---Entry Point---
-#include "Benga/Core/EntryPoint.h"
 // -----------------
