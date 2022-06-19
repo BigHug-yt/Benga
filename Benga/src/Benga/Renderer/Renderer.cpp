@@ -35,4 +35,5 @@ namespace Benga {
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}
+
 }

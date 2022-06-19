@@ -19,12 +19,14 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Benga/vendor/GLFW/include"
 IncludeDir["Glad"] = "Benga/vendor/Glad/include"
+IncludeDir["ImGui"] = "Benga/vendor/imgui"
 IncludeDir["glm"] = "Benga/vendor/glm"
 IncludeDir["stb_image"] = "Benga/vendor/stb_image"
 
 group "Dependencies"
 	include "Benga/vendor/GLFW"
 	include "Benga/vendor/Glad"
+	include "Benga/vendor/imgui"
 	
 group ""
 
@@ -62,6 +64,7 @@ project "Benga"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}"
 	}
@@ -69,6 +72,7 @@ project "Benga"
 	links {
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

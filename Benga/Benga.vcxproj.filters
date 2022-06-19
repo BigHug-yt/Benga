@@ -13,6 +13,9 @@
     <Filter Include="src\Benga\Events">
       <UniqueIdentifier>{5D291893-4922-37E5-7254-1C6A5EAC16F1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Benga\ImGui">
+      <UniqueIdentifier>{83A724B7-EF32-927B-F843-1570644EEE7B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Benga\Renderer">
       <UniqueIdentifier>{5F03C3B0-4BE7-8306-B447-7E59A04A6E88}</UniqueIdentifier>
     </Filter>
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="src\Benga\Events\MouseEvent.h">
       <Filter>src\Benga\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Benga\ImGui\ImGuiLayer.h">
+      <Filter>src\Benga\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Benga\Renderer\Buffer.h">
       <Filter>src\Benga\Renderer</Filter>
@@ -1258,6 +1264,12 @@
     </ClCompile>
     <ClCompile Include="src\Benga\Core\Log.cpp">
       <Filter>src\Benga\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\ImGui\ImGuiBuild.cpp">
+      <Filter>src\Benga\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Benga\ImGui\ImGuiLayer.cpp">
+      <Filter>src\Benga\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Benga\Renderer\Buffer.cpp">
       <Filter>src\Benga\Renderer</Filter>
