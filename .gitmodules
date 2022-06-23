@@ -6,6 +6,10 @@
 	path = Benga/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
 	branch = master
+[submodule "Benga/vendor/imgui"]
+	path = Benga/vendor/imgui
+	url = https://github.com/TheCherno/imgui
+	branch = docking
 [submodule "Benga/vendor/glm"]
 	path = Benga/vendor/glm
 	url = https://github.com/g-truc/glm

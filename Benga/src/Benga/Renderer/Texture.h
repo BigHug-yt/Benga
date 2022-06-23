@@ -22,4 +22,5 @@ namespace Benga {
 	public:
 		static Ref<Texture2D> Create(const std::string& path);
 	};
+
 }

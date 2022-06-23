@@ -17,4 +17,5 @@ namespace Benga {
 		BG_CORE_ASSERT(false, "unknown RendererAPI!");
 		return nullptr;
 	}
+
 }

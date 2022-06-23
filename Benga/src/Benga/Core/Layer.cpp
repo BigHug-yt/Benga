@@ -8,9 +8,4 @@ namespace Benga {
 
 	}
 
-	Layer::~Layer() {
-
-
-	}
-
 }

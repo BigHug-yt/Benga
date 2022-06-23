@@ -1,4 +1,5 @@
 #include "Sandbox2D.h"
+#include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -58,6 +59,13 @@ void Sandbox2D::OnUpdate(Benga::Timestep ts) {
 	Benga::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 	
 	Benga::Renderer::EndScene();
+}
+
+void Sandbox2D::OnImGuiRender() {
+
+	ImGui::Begin("Settings");
+	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	ImGui::End();
 }
 
 void Sandbox2D::OnEvent(Benga::Event& e) {

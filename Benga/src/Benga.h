@@ -13,6 +13,8 @@
 #include "Benga/Core/MouseButtonCodes.h"
 #include "Benga/Renderer/OrthographicCameraController.h"
 
+#include "Benga/ImGui/ImGuiLayer.h"
+
 // ---Renderer-----
 #include "Benga/Renderer/Renderer.h"
 #include "Benga/Renderer/RenderCommand.h"

@@ -12,6 +12,7 @@ public:
 	virtual void OnDetach() override;
 
 	void OnUpdate(Benga::Timestep ts) override;
+	virtual void OnImGuiRender() override;
 	void OnEvent(Benga::Event& e) override;
 private:
 	Benga::OrthoGraphicCameraController m_CameraController;
