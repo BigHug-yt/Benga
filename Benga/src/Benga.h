@@ -17,6 +17,7 @@
 
 // ---Renderer-----
 #include "Benga/Renderer/Renderer.h"
+#include "Benga/Renderer/Renderer2D.h"
 #include "Benga/Renderer/RenderCommand.h"
 
 #include "Benga/Renderer/Buffer.h"
