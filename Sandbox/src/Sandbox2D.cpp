@@ -11,6 +11,8 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach() {
 
+
+	m_CheckerboardTexture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
 }
 
 void Sandbox2D::OnDetach() {
@@ -29,6 +31,7 @@ void Sandbox2D::OnUpdate(Benga::Timestep ts) {
 	Benga::Renderer2D::BeginScene(m_CameraController.GetCamera());
 	Benga::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 	Benga::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.2f, 0.8f, 1.0f });
+	Benga::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture);
 	Benga::Renderer2D::EndScene();
 }
 
