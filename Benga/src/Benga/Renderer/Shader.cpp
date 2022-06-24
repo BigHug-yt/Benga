@@ -11,7 +11,7 @@ namespace Benga {
 		switch (Renderer::GetAPI()) {
 
 		case RendererAPI::API::None:	BG_CORE_ASSERT(false, "RendererAPI::None is currently not supported"); return nullptr;
-		case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(filepath);
 		}
 
 		BG_CORE_ASSERT(false, "unknown RendererAPI!");
@@ -23,7 +23,7 @@ namespace Benga {
 		switch (Renderer::GetAPI()) {
 
 		case RendererAPI::API::None:	BG_CORE_ASSERT(false, "RendererAPI::None is currently not supported"); return nullptr;
-		case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 
 		BG_CORE_ASSERT(false, "unknown RendererAPI!");
