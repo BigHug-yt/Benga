@@ -1,11 +1,7 @@
 #include "bgpch.h"
-#include "LayerStack.h"
+#include "Benga/Core/LayerStack.h"
 
 namespace Benga {
-
-	LayerStack::LayerStack() {
-
-	}
 
 	LayerStack::~LayerStack() {
 

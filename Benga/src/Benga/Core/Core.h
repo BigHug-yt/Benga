@@ -38,21 +38,6 @@
 	#error "Unknown platform!"
 #endif // End of Platform detection
 
-// DLL support
-#ifdef BG_PLATFORM_WINDOWS
-	#if BG_DYNAMIC_LINK
-		#ifdef BG_BUILD_DLL
-			#define BENGA_API __declspec(dllexport)
-		#else
-			#define BENGA_API __declspec(dllimport)
-		#endif
-	#else
-		#define BENGA_API
-	#endif
-#else
-	#error Benga only supports Windows!
-#endif // End of DLL support
-
 #ifdef BG_DEBUG
 	#define BG_ENABLE_ASSERTS
 #endif

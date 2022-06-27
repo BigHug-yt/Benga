@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Benga/Core/Core.h"
-#include "Layer.h"
+#include "Benga/Core/Layer.h"
 
 #include <vector>
 
@@ -10,7 +10,7 @@ namespace Benga {
 	class LayerStack {
 
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* layer);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "Benga/Events/Event.h"
 
 namespace Benga {
 

@@ -1,5 +1,5 @@
 #include "bgpch.h"
-#include "OrthographicCamera.h"
+#include "Benga/Renderer/OrthographicCamera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 

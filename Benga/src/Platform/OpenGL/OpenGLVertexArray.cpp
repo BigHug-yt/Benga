@@ -1,5 +1,5 @@
 #include "bgpch.h"
-#include "OpenGLVertexArray.h"
+#include "Platform/OpenGL/OpenGLVertexArray.h"
 
 #include <glad/glad.h>
 
@@ -8,17 +8,17 @@ namespace Benga {
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
 		switch (type) {
 
-			case Benga::ShaderDataType::Float:		return GL_FLOAT;
-			case Benga::ShaderDataType::Float2:		return GL_FLOAT;
-			case Benga::ShaderDataType::Float3:		return GL_FLOAT;
-			case Benga::ShaderDataType::Float4:		return GL_FLOAT;
-			case Benga::ShaderDataType::Mat3:		return GL_FLOAT;
-			case Benga::ShaderDataType::Mat4:		return GL_FLOAT;
-			case Benga::ShaderDataType::Int:		return GL_INT;
-			case Benga::ShaderDataType::Int2:		return GL_INT;
-			case Benga::ShaderDataType::Int3:		return GL_INT;
-			case Benga::ShaderDataType::Int4:		return GL_INT;
-			case Benga::ShaderDataType::Bool:		return GL_BOOL;
+			case ShaderDataType::Float:		return GL_FLOAT;
+			case ShaderDataType::Float2:		return GL_FLOAT;
+			case ShaderDataType::Float3:		return GL_FLOAT;
+			case ShaderDataType::Float4:		return GL_FLOAT;
+			case ShaderDataType::Mat3:		return GL_FLOAT;
+			case ShaderDataType::Mat4:		return GL_FLOAT;
+			case ShaderDataType::Int:		return GL_INT;
+			case ShaderDataType::Int2:		return GL_INT;
+			case ShaderDataType::Int3:		return GL_INT;
+			case ShaderDataType::Int4:		return GL_INT;
+			case ShaderDataType::Bool:		return GL_BOOL;
 		}
 
 		BG_CORE_ASSERT(false, "Unknown ShaderDataType!");

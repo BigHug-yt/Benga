@@ -1,4 +1,5 @@
 #pragma once
+#include "Benga/Core/Core.h"
 
 #ifdef BG_PLATFORM_WINDOWS
 

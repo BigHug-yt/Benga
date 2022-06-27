@@ -1,7 +1,7 @@
 #include "bgpch.h"
-#include "Shader.h"
+#include "Benga/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "Benga/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Benga {

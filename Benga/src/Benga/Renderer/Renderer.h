@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderCommand.h"
+#include "Benga/Renderer/RenderCommand.h"
 
-#include "OrthographicCamera.h"
-#include "Shader.h"
+#include "Benga/Renderer/OrthographicCamera.h"
+#include "Benga/Renderer/Shader.h"
 
 namespace Benga {
 
@@ -11,6 +11,8 @@ namespace Benga {
 
 	public:
 		static void Init();
+		static void Shutdown();
+
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void BeginScene(OrthographicCamera& camera);

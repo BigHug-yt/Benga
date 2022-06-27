@@ -1,5 +1,5 @@
 #include "bgpch.h"
-#include "OrthographicCameraController.h"
+#include "Benga/Renderer/OrthographicCameraController.h"
 
 #include "Benga/Core/Input.h"
 #include "Benga/Core/KeyCodes.h"

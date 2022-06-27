@@ -1,9 +1,7 @@
 #include <Benga.h>
 #include <Benga/Core/EntryPoint.h>
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -25,8 +23,7 @@ public:
 		};
 
 
-		Benga::Ref<Benga::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Benga::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Benga::Ref<Benga::VertexBuffer> vertexBuffer = Benga::VertexBuffer::Create(vertices, sizeof(vertices));
 		Benga::BufferLayout layout = {
 			{ Benga::ShaderDataType::Float3, "a_Position" },
 			{ Benga::ShaderDataType::Float4, "a_Color" }
@@ -36,8 +33,7 @@ public:
 
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		Benga::Ref<Benga::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Benga::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Benga::Ref<Benga::IndexBuffer> indexBuffer = Benga::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA = Benga::VertexArray::Create();
@@ -49,8 +45,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		Benga::Ref<Benga::VertexBuffer> squareVB;
-		squareVB.reset(Benga::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Benga::Ref<Benga::VertexBuffer> squareVB = Benga::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Benga::ShaderDataType::Float3, "a_Position" },
 			{ Benga::ShaderDataType::Float2, "a_TexCoord" }
@@ -58,8 +53,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		Benga::Ref<Benga::IndexBuffer> squareIB;
-		squareIB.reset(Benga::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Benga::Ref<Benga::IndexBuffer> squareIB = Benga::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
@@ -142,8 +136,8 @@ public:
 		m_Texture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
 		m_PolandTexture = Benga::Texture2D::Create("assets/textures/poland.png");
 
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Benga::Timestep ts) override {
@@ -159,8 +153,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Benga::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

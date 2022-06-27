@@ -1,4 +1,0 @@
-not really a problem, but at the moment:
-	at lines 12 and 37 in Benga/src/Platform/OpenGL/OpenGLBuffer.cpp, I'm using glGenBuffers instead of glCreateBuffers
-	at line 30 in Benga/src/Platform/OpenGL/OpenGLVertexArray.cpp, I'm using glGenVertexArrays instead of glCreateVertexArrays
-this has something to do with my GPU not supporting OpenGL 4.5 (it only goes to 4.3)

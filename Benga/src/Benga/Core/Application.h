@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core.h"
+#include "Benga/Core/Core.h"
 
-#include "Window.h"
+#include "Benga/Core/Window.h"
 #include "Benga/Core/LayerStack.h"
 #include "Benga/Events/Event.h"
 #include "Benga/Events/ApplicationEvent.h"
@@ -19,7 +19,7 @@ namespace Benga {
 
 	public:
 		Application();
-		virtual ~Application() = default;
+		virtual ~Application();
 
 		void Run();
 

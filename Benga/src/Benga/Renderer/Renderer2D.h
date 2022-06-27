@@ -1,8 +1,8 @@
 #pragma once
 
-#include "OrthographicCamera.h"
+#include "Benga/Renderer/OrthographicCamera.h"
 
-#include "Texture.h"
+#include "Benga/Renderer/Texture.h"
 
 namespace Benga {
 

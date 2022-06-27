@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "Benga/Events/Event.h"
 
 namespace Benga {
 
@@ -29,7 +29,7 @@ namespace Benga {
 	class WindowCloseEvent : public Event {
 
 	public:
-		WindowCloseEvent() {}
+		WindowCloseEvent() = default;
 
 		EVENT_CLASS_TYPE(WindowClose)
 			Event_CLASS_CATEGORY(EventCategoryApplication)
@@ -38,7 +38,7 @@ namespace Benga {
 	class AppTickEvent : public Event {
 
 	public:
-		AppTickEvent() {}
+		AppTickEvent() = default;
 
 		EVENT_CLASS_TYPE(AppTick)
 		Event_CLASS_CATEGORY(EventCategoryApplication)
@@ -47,7 +47,7 @@ namespace Benga {
 	class AppUpdateEvent : public Event {
 
 	public:
-		AppUpdateEvent() {}
+		AppUpdateEvent() = default;
 
 		EVENT_CLASS_TYPE(AppUpdate)
 		Event_CLASS_CATEGORY(EventCategoryApplication)
@@ -56,7 +56,7 @@ namespace Benga {
 	class AppRenderEvent : public Event {
 
 	public:
-		AppRenderEvent() {}
+		AppRenderEvent() = default;
 
 		EVENT_CLASS_TYPE(AppRender)
 		Event_CLASS_CATEGORY(EventCategoryApplication)

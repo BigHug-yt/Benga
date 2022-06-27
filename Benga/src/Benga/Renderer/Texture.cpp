@@ -1,7 +1,7 @@
 #include "bgpch.h"
-#include "Texture.h"
+#include "Benga/Renderer/Texture.h"
 
-#include "Renderer.h"
+#include "Benga/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Benga {
