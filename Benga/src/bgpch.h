@@ -15,6 +15,8 @@
 
 #include "Benga/Core/Log.h"
 
+#include "Benga/Debug/Instrumentor.h"
+
 #ifdef BG_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

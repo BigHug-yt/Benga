@@ -8,12 +8,18 @@ extern Benga::Application* Benga::CreateApplication();
 int main(int argc, char** argv) {
 	
 	Benga::Log::Init();
-	BG_CORE_WARN("Initialized Log!");
-	BG_INFO("Hello world!");
 
+	BG_PROFILE_BEGIN_SESSION("Startup", "BengaProfile-Startup.json");
 	auto app = Benga::CreateApplication();
+	BG_PROFILE_END_SESSION();
+
+	BG_PROFILE_BEGIN_SESSION("Runtime", "BengaProfile-Runtime.json");
 	app->Run();
+	BG_PROFILE_END_SESSION();
+
+	BG_PROFILE_BEGIN_SESSION("Shutdown", "BengaProfile-Shutdown.json");
 	delete app;
+	BG_PROFILE_END_SESSION();
 }
 
 #endif
