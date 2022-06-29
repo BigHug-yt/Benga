@@ -11,12 +11,14 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach() {
 
+	BG_PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = Benga::Texture2D::Create("assets/textures/checkerboard.png");
 }
 
 void Sandbox2D::OnDetach() {
 
+	BG_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(Benga::Timestep ts) {
@@ -24,10 +26,7 @@ void Sandbox2D::OnUpdate(Benga::Timestep ts) {
 	BG_PROFILE_FUNCTION();
 
 	// Update
-	{
-		BG_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(ts);
-	}
+	m_CameraController.OnUpdate(ts);
 
 	// Render
 	{
@@ -40,7 +39,7 @@ void Sandbox2D::OnUpdate(Benga::Timestep ts) {
 		BG_PROFILE_SCOPE("Renderer Draw");
 		Benga::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		Benga::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		Benga::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.2f, 0.8f, 1.0f });
+		Benga::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
 		Benga::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture);
 		Benga::Renderer2D::EndScene();
 	}

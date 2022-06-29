@@ -7,7 +7,7 @@
 namespace Benga {
 
 	Ref<VertexArray> VertexArray::Create() {
-
+		
 		switch (Renderer::GetAPI()) {
 
 		case RendererAPI::API::None:	BG_CORE_ASSERT(false, "RendererAPI::None is currently not supported"); return nullptr;

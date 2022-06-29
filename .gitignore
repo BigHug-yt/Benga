@@ -3,6 +3,9 @@
 !vendor/bin/premake/
 bin-int/
 
+# Benga files
+*.log
+
 # Visual Studio files and folder
 .vs/
 **.sln

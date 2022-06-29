@@ -12,7 +12,7 @@
 
 #include "Benga/Core/Input.h"
 #include "Benga/Core/KeyCodes.h"
-#include "Benga/Core/MouseButtonCodes.h"
+#include "Benga/Core/MouseCodes.h"
 #include "Benga/Renderer/OrthographicCameraController.h"
 
 #include "Benga/ImGui/ImGuiLayer.h"

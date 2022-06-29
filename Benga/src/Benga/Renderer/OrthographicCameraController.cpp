@@ -13,6 +13,8 @@ namespace Benga {
 
 	void OrthoGraphicCameraController::OnUpdate(Timestep ts) {
 
+		BG_PROFILE_FUNCTION();
+
 		if (Input::IsKeyPressed(BG_KEY_A)) {
 
 			m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -57,12 +59,16 @@ namespace Benga {
 
 	void OrthoGraphicCameraController::OnEvent(Event& e) {
 
+		BG_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(BG_BIND_EVENT_FN(OrthoGraphicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(BG_BIND_EVENT_FN(OrthoGraphicCameraController::OnWindowResized));
 	}
 
 	bool OrthoGraphicCameraController::OnMouseScrolled(MouseScrolledEvent& e) {
+
+		BG_PROFILE_FUNCTION();
 
 		m_ZoomLevel -= e.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
@@ -71,6 +77,8 @@ namespace Benga {
 	}
 
 	bool OrthoGraphicCameraController::OnWindowResized(WindowResizeEvent& e) {
+
+		BG_PROFILE_FUNCTION();
 
 		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);

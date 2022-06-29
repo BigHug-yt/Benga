@@ -15,6 +15,8 @@ namespace Benga {
 
 	Application::Application() {
 
+		BG_PROFILE_FUNCTION();
+
 		BG_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -29,28 +31,38 @@ namespace Benga {
 
 	Application::~Application() {
 
+		BG_PROFILE_FUNCTION();
+
 		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer) {
 
+		BG_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay) {
 
+		BG_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e) {
+
+		BG_PROFILE_FUNCTION();
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BG_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BG_BIND_EVENT_FN(Application::OnWindowResize));
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
 
-			(*--it)->OnEvent(e);
+			(*it)->OnEvent(e);
 			if (e.Handled)
 				break;
 		}
@@ -58,7 +70,11 @@ namespace Benga {
 
 	void Application::Run() {
 
+		BG_PROFILE_FUNCTION();
+
 		while (m_Running) {
+
+			BG_PROFILE_SCOPE("RunLoop");
 
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
@@ -66,14 +82,22 @@ namespace Benga {
 
 			if (!m_Minimized) {
 
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					BG_PROFILE_SCOPE("LayerStack OnUpdate");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
+
+				m_ImGuiLayer->Begin();
+				{
+					BG_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
-			
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
@@ -86,6 +110,8 @@ namespace Benga {
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& e) {
+
+		BG_PROFILE_FUNCTION();
 
 		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
 

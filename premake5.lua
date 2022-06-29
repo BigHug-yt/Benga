@@ -1,5 +1,5 @@
 workspace "Benga"
-	architecture "x64"
+	architecture "x86_64"
 	startproject "Sandbox"
 
 	configurations {

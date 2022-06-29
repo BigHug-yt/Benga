@@ -7,6 +7,8 @@ namespace Benga {
 	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
 	void Renderer::Init() {
+		
+		BG_PROFILE_FUNCTION();
 
 		RenderCommand::Init();
 		Renderer2D::Init();

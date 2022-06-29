@@ -26,27 +26,37 @@ namespace Benga {
 	}
 
 	OpenGLVertexArray::OpenGLVertexArray() {
+		
+		BG_PROFILE_FUNCTION();
 
 		glGenVertexArrays(1, &m_RendererID);
 
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray() {
+		
+		BG_PROFILE_FUNCTION();
 
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const {
 
+		BG_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::Unbind() const {
 
+		BG_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
+
+		BG_PROFILE_FUNCTION();
 
 		BG_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!");
 
@@ -70,6 +80,8 @@ namespace Benga {
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
+
+		BG_PROFILE_FUNCTION();
 
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

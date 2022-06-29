@@ -12,6 +12,8 @@ namespace Benga {
 	}
 
 	void OpenGLContext::Init() {
+		
+		BG_PROFILE_FUNCTION();
 
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -33,6 +35,8 @@ namespace Benga {
 	}
 
 	void OpenGLContext::SwapBuffers() {
+		
+		BG_PROFILE_FUNCTION();
 
 		glfwSwapBuffers(m_WindowHandle);
 	}
