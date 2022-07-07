@@ -158,7 +158,7 @@ namespace Benga {
 	};
 }
 
-#define BG_PROFILE 1
+#define BG_PROFILE 0
 #if BG_PROFILE
     // this is only resolved when the (pre)compiler starts, so syntax highlighting might be wrong
     #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)
