@@ -36,12 +36,15 @@ void Sandbox2D::OnUpdate(Benga::Timestep ts) {
 	}
 
 	{
+		static float rotation = 0.0f;
+		rotation += ts * 10.0f;
+
 		BG_PROFILE_SCOPE("Renderer Draw");
 		Benga::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		Benga::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		Benga::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
-		//Benga::Renderer2D::DrawRotatedQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, glm::radians(-45.0f), m_SquareColor);
-		//Benga::Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, glm::radians(45.0f), m_CheckerboardTexture, 10.0f, glm::vec4(1.0f, 0.9f, 0.9f, 1.0f));
+		Benga::Renderer2D::DrawQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Benga::Renderer2D::DrawRotatedQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, glm::radians(-rotation), m_SquareColor);
+		Benga::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f, glm::vec4(1.0f, 0.7f, 0.7f, 1.0f));
+		Benga::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, glm::radians(rotation),  m_CheckerboardTexture, 20.0f, glm::vec4(0.7f, 1.0f, 0.7f, 1.0f));
 		Benga::Renderer2D::EndScene();
 	}
 	
