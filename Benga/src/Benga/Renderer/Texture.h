@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Benga/Core/Core.h"
+#include "Benga/Core/Base.h"
 
 namespace Benga {
 

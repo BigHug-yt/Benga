@@ -39,12 +39,22 @@
 #endif // End of Platform detection
 
 #ifdef BG_DEBUG
-	#define BG_ENABLE_ASSERTS
+	#if defined(BG_PLATFORM_WINDOWS)
+		#define BG_DEBUGBREAK() __debugbreak()
+	#elif defined(BG_PLATFORM_LINUX)
+		#include <signal.h>
+		#define BG_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
+	#define BG_ENABLE_ASSERTS()
+#else
+	#define BG_DEBUGBREAK()
 #endif
 
 #ifdef BG_ENABLE_ASSERTS
-	#define BG_ASSERT(x, ...) { if(!(x)) { BG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define BG_CORE_ASSERT(x, ...) { if(!(x)) { BG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define BG_ASSERT(x, ...) { if(!(x)) { BG_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
+	#define BG_CORE_ASSERT(x, ...) { if(!(x)) { BG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
 #else
 	#define BG_ASSERT(x, ...)
 	#define BG_CORE_ASSERT(x, ...)

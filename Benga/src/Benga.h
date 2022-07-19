@@ -2,7 +2,7 @@
 
 // For use by Benga applications only
 
-#include "Benga/Core/Core.h"
+#include "Benga/Core/Base.h"
 
 #include "Benga/Core/Application.h"
 #include "Benga/Core/Layer.h"

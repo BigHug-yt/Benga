@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Core/Core.h"
+#include "Benga/Core/Base.h"
 #include "Benga/Core/Timestep.h"
 #include "Benga/Events/Event.h"
 

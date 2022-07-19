@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Core/Core.h"
+#include "Benga/Core/Base.h"
 
 #include "Benga/Core/Window.h"
 #include "Benga/Core/LayerStack.h"

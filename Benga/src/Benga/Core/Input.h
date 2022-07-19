@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Core/Core.h"
+#include "Benga/Core/Base.h"
 #include "Benga/Core/KeyCodes.h"
 #include "Benga/Core/MouseCodes.h"
 
