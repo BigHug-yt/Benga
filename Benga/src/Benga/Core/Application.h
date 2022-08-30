@@ -20,7 +20,7 @@ namespace Benga {
 	class Application {
 
 	public:
-		Application();
+		Application(const std::string& name = "Benga Engine");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
