@@ -52,6 +52,11 @@ namespace Benga {
 		overlay->OnAttach();
 	}
 
+	void Application::Close() {
+
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e) {
 
 		BG_PROFILE_FUNCTION();

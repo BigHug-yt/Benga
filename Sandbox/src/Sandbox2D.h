@@ -20,8 +20,9 @@ private:
 	// Temp
 	Benga::Ref<Benga::VertexArray> m_SquareVA;
 	Benga::Ref<Benga::Shader> m_FlatColorShader;
+	Benga::Ref<Benga::Framebuffer> m_Framebuffer;
 
 	Benga::Ref<Benga::Texture2D> m_CheckerboardTexture;
 
-	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+	glm::vec4 m_SquareColor;
 };
