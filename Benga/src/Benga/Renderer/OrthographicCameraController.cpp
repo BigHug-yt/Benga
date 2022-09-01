@@ -66,6 +66,13 @@ namespace Benga {
 		dispatcher.Dispatch<WindowResizeEvent>(BG_BIND_EVENT_FN(OrthoGraphicCameraController::OnWindowResized));
 	}
 
+	void OrthoGraphicCameraController::OnResize(float width, float height) {
+
+
+		m_AspectRatio = width / height;
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+	}
+
 	bool OrthoGraphicCameraController::OnMouseScrolled(MouseScrolledEvent& e) {
 
 		BG_PROFILE_FUNCTION();
@@ -80,8 +87,7 @@ namespace Benga {
 
 		BG_PROFILE_FUNCTION();
 
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		OnResize((float)e.GetWidth(), (float)e.GetHeight());
 		return false;
 	}
 
