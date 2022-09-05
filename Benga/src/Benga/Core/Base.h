@@ -52,6 +52,7 @@
 	#define BG_DEBUGBREAK()
 #endif
 
+// TODO: enable BG_ASSERT to take in no arguments
 #ifdef BG_ENABLE_ASSERTS
 	#define BG_ASSERT(x, ...) { if(!(x)) { BG_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
 	#define BG_CORE_ASSERT(x, ...) { if(!(x)) { BG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
