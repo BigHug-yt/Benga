@@ -131,6 +131,13 @@ namespace Benga {
 				ImGui::EndMenu();
 			}
 
+			if (ImGui::BeginMenu("Keyboard")) {
+
+				if (ImGui::MenuItem("AZERTY")) Benga::Input::SetKeyboard(Benga::Keyboard::AZERTY);
+				if (ImGui::MenuItem("QWERTY")) Benga::Input::SetKeyboard(Benga::Keyboard::QWERTY);
+				ImGui::EndMenu();
+			}
+
 			ImGui::EndMenuBar();
 		}
 

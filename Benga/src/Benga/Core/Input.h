@@ -6,6 +6,12 @@
 
 namespace Benga {
 
+	enum class Keyboard {
+
+		QWERTY,
+		AZERTY
+	};
+
 	class Input {
 
 	public:
@@ -15,6 +21,14 @@ namespace Benga {
 		static std::pair<float, float> GetMousePosition();
 		static float GetMouseX();
 		static float GetMouseY();
+
+		static void SetKeyboard(Keyboard keyboard);
+		static Keyboard GetKeyboard() { return s_Keyboard; }
+
+		static KeyCode KeyCodeToglfw(KeyCode key);
+		static KeyCode glfwToKeyCode(KeyCode key);
+	private:
+		static Keyboard s_Keyboard;
 	};
 
 }

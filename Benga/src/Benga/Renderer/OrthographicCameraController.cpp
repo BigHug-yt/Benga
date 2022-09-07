@@ -15,7 +15,7 @@ namespace Benga {
 
 		BG_PROFILE_FUNCTION();
 
-		if (Input::IsKeyPressed(BG_KEY_A)) {
+		if (Input::IsKeyPressed(BG_KEY_Q)) {
 
 			m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -31,7 +31,7 @@ namespace Benga {
 			m_CameraPosition.x -= -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
-		else if (Input::IsKeyPressed(BG_KEY_W)) {
+		else if (Input::IsKeyPressed(BG_KEY_Z)) {
 
 			m_CameraPosition.x += -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -39,7 +39,7 @@ namespace Benga {
 
 		if (m_Rotation) {
 
-			if (Input::IsKeyPressed(BG_KEY_Q))
+			if (Input::IsKeyPressed(BG_KEY_A))
 				m_CameraRotation += m_CameraRotationSpeed * ts;
 			if (Input::IsKeyPressed(BG_KEY_E))
 				m_CameraRotation -= m_CameraRotationSpeed * ts;
