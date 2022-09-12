@@ -22,6 +22,7 @@ IncludeDir["Glad"] = "Benga/vendor/Glad/include"
 IncludeDir["ImGui"] = "Benga/vendor/imgui"
 IncludeDir["glm"] = "Benga/vendor/glm"
 IncludeDir["stb_image"] = "Benga/vendor/stb_image"
+IncludeDir["entt"] = "Benga/vendor/entt/include"
 
 group "Dependencies"
 	include "Benga/vendor/GLFW"
@@ -67,7 +68,8 @@ project "Benga"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {
@@ -169,7 +171,8 @@ project "Benga-Editor"
 		"Benga/vendor/spdlog/include",
 		"Benga/src",
 		"Benga/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {

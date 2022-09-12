@@ -17,6 +17,9 @@
 
 #include "Benga/ImGui/ImGuiLayer.h"
 
+#include "Benga/Scene/Scene.h"
+#include "Benga/Scene/Components.h"
+
 // ---Renderer-----
 #include "Benga/Renderer/Renderer.h"
 #include "Benga/Renderer/Renderer2D.h"
