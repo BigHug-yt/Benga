@@ -122,7 +122,8 @@ project "Sandbox"
 		"Benga/vendor/spdlog/include",
 		"Benga/src",
 		"Benga/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {

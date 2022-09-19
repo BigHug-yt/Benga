@@ -27,15 +27,9 @@ namespace Benga {
 
 	class Instrumentor
 	{
-	private:
-		std::mutex m_Mutex;
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr)
-		{
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
@@ -104,6 +98,15 @@ namespace Benga {
 		}
 
 	private:
+		Instrumentor()
+			: m_CurrentSession(nullptr) {
+
+		}
+
+		~Instrumentor() {
+			
+			EndSession();
+		}
 
 		void WriteHeader()
 		{
@@ -129,6 +132,11 @@ namespace Benga {
 				m_CurrentSession = nullptr;
 			}
 		}
+
+	private:
+		std::mutex m_Mutex;
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
 
 	};
 
@@ -216,8 +224,10 @@ namespace Benga {
 
     #define BG_PROFILE_BEGIN_SESSION(name, filepath) ::Benga::Instrumentor::Get().BeginSession(name, filepath)
     #define BG_PROFILE_END_SESSION() ::Benga::Instrumentor::Get().EndSession()
-    #define BG_PROFILE_SCOPE(name) constexpr auto fixedName = ::Benga::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-									::Benga::InstrumentationTimer timer##__LINE__(fixedName.Data)
+	#define BG_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::Benga::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+												::Benga::InstrumentationTimer timer##line(fixedName##line.Data)
+	#define BG_PROFILE_SCOPE_LINE(name, line) BG_PROFILE_SCOPE_LINE2(name, line)
+	#define BG_PROFILE_SCOPE(name) BG_PROFILE_SCOPE_LINE(name, __LINE__)
     #define BG_PROFILE_FUNCTION() BG_PROFILE_SCOPE(BG_FUNC_SIG)
 #else
     #define BG_PROFILE_BEGIN_SESSION(name, filepath)
