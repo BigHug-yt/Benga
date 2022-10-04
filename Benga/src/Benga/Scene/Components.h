@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "Benga/Renderer/Camera.h"
+
 namespace Benga {
 
 	struct TagComponent {
@@ -36,4 +38,16 @@ namespace Benga {
 		SpriteRendererComponent(const glm::vec4& color)
 			: Color(color) {}
 	};
+
+	struct CameraComponent {
+
+		Camera Camera;
+		bool Primary = true;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& projection)
+			: Camera(projection) {}
+	};
+
 }
