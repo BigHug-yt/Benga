@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bgpch.h"
+#include <sstream>
 
 #include "Benga/Core/Base.h"
 #include "Benga/Events/Event.h"

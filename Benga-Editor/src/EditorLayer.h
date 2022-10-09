@@ -29,7 +29,7 @@ namespace Benga {
 		Entity m_CameraEntity;
 		Entity m_SecondCamera;
 
-		bool m_PrimaryCamera = false;
+		bool m_PrimaryCamera = true;
 
 		Ref<Texture2D> m_CheckerboardTexture;
 

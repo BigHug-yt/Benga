@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Benga/Events/Event.h"
-#include "Benga/Core/Input.h"
+#include "Benga/Core/MouseCodes.h"
 
 namespace Benga {
 

@@ -1,3 +1,5 @@
+include "./vendor/premake/premake_customization/solution_items.lua"
+
 workspace "Benga"
 	architecture "x86_64"
 	startproject "Benga-Editor"
@@ -9,6 +11,11 @@ workspace "Benga"
 		"Dist"
 	}
 
+	solution_items {
+
+		".editorconfig"
+	}
+
 	flags {
 
 		"MultiProcessorCompile"
@@ -17,186 +24,20 @@ workspace "Benga"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Benga/vendor/GLFW/include"
-IncludeDir["Glad"] = "Benga/vendor/Glad/include"
-IncludeDir["ImGui"] = "Benga/vendor/imgui"
-IncludeDir["glm"] = "Benga/vendor/glm"
-IncludeDir["stb_image"] = "Benga/vendor/stb_image"
-IncludeDir["entt"] = "Benga/vendor/entt/include"
+IncludeDir["GLFW"] = "%{wks.location}/Benga/vendor/GLFW/include"
+IncludeDir["Glad"] = "%{wks.location}/Benga/vendor/Glad/include"
+IncludeDir["ImGui"] = "%{wks.location}/Benga/vendor/imgui"
+IncludeDir["glm"] = "%{wks.location}/Benga/vendor/glm"
+IncludeDir["stb_image"] = "%{wks.location}/Benga/vendor/stb_image"
+IncludeDir["entt"] = "%{wks.location}/Benga/vendor/entt/include"
 
 group "Dependencies"
+	include "vendor/premake"
 	include "Benga/vendor/GLFW"
 	include "Benga/vendor/Glad"
 	include "Benga/vendor/imgui"
-	
 group ""
 
-project "Benga"
-	location "Benga"
-	kind "StaticLib"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	pchheader "bgpch.h"
-	pchsource "Benga/src/bgpch.cpp"
-
-	files {
-
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/stb_image/**.h",
-		"%{prj.name}/vendor/stb_image/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
-		"%{prj.name}/vendor/glm/glm/**.hpp"
-	}
-
-	defines {
-
-		"_CRT_SECURE_NO_WARNINGS",
-		"GLFW_INCLUDE_NONE"
-	}
-
-	includedirs {
-
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
-	}
-
-	links {
-		"GLFW",
-		"Glad",
-		"ImGui",
-		"opengl32.lib"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-		defines {
-
-		}
-
-	filter "configurations:Debug"
-		defines "BG_DEBUG"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		defines "BG_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "BG_DIST"
-		runtime "Release"
-		optimize "on"
-
-project "Sandbox"
-	location "Sandbox"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	files {
-
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
-
-	includedirs {
-
-		"Benga/vendor/spdlog/include",
-		"Benga/src",
-		"Benga/vendor",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
-	}
-
-	links {
-
-		"Benga"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-	filter "configurations:Debug"
-		defines "BG_DEBUG"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		defines "BG_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "BG_DIST"
-		runtime "Release"
-		optimize "on"
-		kind "WindowedApp"
-		entrypoint "mainCRTStartup"
-
-project "Benga-Editor"
-	location "Benga-Editor"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	files {
-
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
-
-	includedirs {
-
-		"Benga/vendor/spdlog/include",
-		"Benga/src",
-		"Benga/vendor",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
-	}
-
-	links {
-
-		"Benga"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-	filter "configurations:Debug"
-		defines "BG_DEBUG"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		defines "BG_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "BG_DIST"
-		runtime "Release"
-		optimize "on"
-		kind "WindowedApp"
-		entrypoint "mainCRTStartup"
+include "Benga"
+include "Sandbox"
+include "Benga-Editor"
