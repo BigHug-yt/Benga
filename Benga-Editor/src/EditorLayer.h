@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Benga.h>
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace Benga {
 
@@ -39,5 +40,8 @@ namespace Benga {
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 
 		glm::vec4 m_SquareColor;
+
+		// Panels
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 }
