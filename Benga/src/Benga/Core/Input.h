@@ -9,8 +9,8 @@ namespace Benga {
 
 	enum class Keyboard {
 
-		QWERTY,
-		AZERTY
+		AZERTY,
+		QWERTY
 	};
 
 	class Input {

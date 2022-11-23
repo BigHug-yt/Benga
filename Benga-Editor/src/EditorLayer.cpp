@@ -172,8 +172,26 @@ namespace Benga {
 
 			if (ImGui::BeginMenu("Keyboard")) {
 
-				if (ImGui::MenuItem("AZERTY")) Input::SetKeyboard(Keyboard::AZERTY);
-				if (ImGui::MenuItem("QWERTY")) Input::SetKeyboard(Keyboard::QWERTY);
+				const char* keyboardTypeStrings[] = { "AZERTY", "QWERTY" };
+				const char* currentKeyboardTypeString = keyboardTypeStrings[(int)Input::GetKeyboard()];
+				if (ImGui::BeginCombo("Keyboard", currentKeyboardTypeString)) {
+
+					for (int i = 0; i < 2; i++) {
+
+						bool isSelected = currentKeyboardTypeString == keyboardTypeStrings[i];
+						if (ImGui::Selectable(keyboardTypeStrings[i], isSelected)) {
+
+							currentKeyboardTypeString = keyboardTypeStrings[i];
+							Input::SetKeyboard((Keyboard)i);
+						}
+
+						if (isSelected)
+							ImGui::SetItemDefaultFocus();
+					}
+
+					ImGui::EndCombo();
+				}
+
 				ImGui::EndMenu();
 			}
 
