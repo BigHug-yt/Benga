@@ -18,14 +18,8 @@
 	#define BG_DEBUGBREAK()
 #endif
 
-// TODO: enable BG_ASSERT to take in no arguments
-#ifdef BG_ENABLE_ASSERTS
-	#define BG_ASSERT(x, ...) { if(!(x)) { BG_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
-	#define BG_CORE_ASSERT(x, ...) { if(!(x)) { BG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); BG_DEBUGBREAK(); } }
-#else
-	#define BG_ASSERT(x, ...)
-	#define BG_CORE_ASSERT(x, ...)
-#endif
+#define BG_EXPAND_MACRO(x) x
+#define BG_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -50,3 +44,6 @@ namespace Benga {
 	}
 
 }
+
+#include "Benga/Core/Log.h"
+#include "Benga/Core/Assert.h"

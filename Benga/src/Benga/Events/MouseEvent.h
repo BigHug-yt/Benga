@@ -54,7 +54,7 @@ namespace Benga {
 	public:
 		inline MouseCode GetMouseButton() const { return m_Button; }
 
-		Event_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+		Event_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
 	protected:
 		MouseButtonEvent(MouseCode button)
 			: m_Button(button) {}

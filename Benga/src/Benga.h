@@ -7,6 +7,7 @@
 #include "Benga/Core/Application.h"
 #include "Benga/Core/Layer.h"
 #include "Benga/Core/Log.h"
+#include "Benga/Core/Assert.h"
 
 #include "Benga/Core/Timestep.h"
 

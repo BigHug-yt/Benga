@@ -69,7 +69,7 @@ namespace Benga {
 	public:
 		BufferLayout() {}
 
-		BufferLayout(const std::initializer_list<BufferElement>& elements)
+		BufferLayout(std::initializer_list<BufferElement> elements)
 			: m_Elements(elements) {
 
 			CalculateOffsetsAndStride();

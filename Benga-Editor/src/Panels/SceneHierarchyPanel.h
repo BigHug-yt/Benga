@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Benga/Core/Base.h"
-#include "Benga/Core/Log.h"
 #include "Benga/Scene/Scene.h"
 #include "Benga/Scene/Entity.h"
 
