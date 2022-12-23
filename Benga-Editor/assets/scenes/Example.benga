@@ -1,0 +1,79 @@
+Scene: Untitled
+Entities: {
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Yellow Square
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 2.100000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 1.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Red Square
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Camera A
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		CameraComponent: {
+			Camera: {
+				ProjectionType: 1
+				PerspectiveFOV: 0.785398
+				PerspectiveNear: 0.010000
+				PerspectiveFar: 1000.000000
+				OrthographicSize: 10.000000
+				OrthographicNear: -1.000000
+				OrthographicFar: 1.000000
+			}
+			Primary: true
+			FixedAspectRatio: false
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Camera B
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		CameraComponent: {
+			Camera: {
+				ProjectionType: 1
+				PerspectiveFOV: 0.785398
+				PerspectiveNear: 0.010000
+				PerspectiveFar: 1000.000000
+				OrthographicSize: 10.000000
+				OrthographicNear: -1.000000
+				OrthographicFar: 1.000000
+			}
+			Primary: false
+			FixedAspectRatio: false
+		}
+	}
+}

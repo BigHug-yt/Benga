@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Benga/Scene/SceneSerializer.h"
+
 namespace Benga {
 
 	EditorLayer::EditorLayer()
@@ -24,7 +26,7 @@ namespace Benga {
 
 		m_ActiveScene = CreateRef<Scene>();
 
-		// Entity
+#if 0
 		Entity square = m_ActiveScene->CreateEntity("Yellow Square");
 		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 1.0f, 0.0f, 1.0f });
 
@@ -68,7 +70,7 @@ namespace Benga {
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-
+#endif
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
@@ -169,6 +171,17 @@ namespace Benga {
 				// Disabling fullscreen would allow the window to be moved to the front of other windows, 
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+
+				if (ImGui::MenuItem("Serialize")) {
+
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Serialize("assets/scenes/Example.benga");
+				}
+				if (ImGui::MenuItem("Deserialize")) {
+
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Deserialize("assets/scenes/Example.benga");
+				}
 
 				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();

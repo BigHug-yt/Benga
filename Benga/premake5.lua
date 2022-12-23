@@ -35,13 +35,15 @@ project "Benga"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.Crayon}"
 	}
 
 	links {
 		"GLFW",
 		"Glad",
 		"ImGui",
+		"Crayon",
 		"opengl32.lib"
 	}
 
