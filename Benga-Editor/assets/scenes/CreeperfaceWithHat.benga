@@ -1,0 +1,177 @@
+Scene: Untitled
+Entities: {
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: PerspectiveCamera
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, 10.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		CameraComponent: {
+			Camera: {
+				ProjectionType: 0
+				PerspectiveFOV: 0.785398
+				PerspectiveNear: 0.010000
+				PerspectiveFar: 1000.000000
+				OrthographicSize: 10.000000
+				OrthographicNear: -1.000000
+				OrthographicFar: 1.000000
+			}
+			Primary: true
+			FixedAspectRatio: false
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Hat bottom
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 2.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 4.100000, 0.100000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 1.000000, 1.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Hat top
+		}
+		TransformComponent: {
+			Translation: [ -0.100000, 4.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.548033 ]
+			Scale: [ 0.800000, 0.800000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 1.000000, 1.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Hat red part
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 2.000000, -0.400000 ]
+			Rotation: [ 0.000000, 0.000000, 0.785398 ]
+			Scale: [ 2.800000, 2.800000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Nose right
+		}
+		TransformComponent: {
+			Translation: [ 0.750000, -1.250000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 0.500000, 1.500000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Nose left
+		}
+		TransformComponent: {
+			Translation: [ -0.750000, -1.250000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 0.500000, 1.500000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Nose middle
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, -0.625000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.750000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Right eye
+		}
+		TransformComponent: {
+			Translation: [ 1.000000, 0.750000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Left eye
+		}
+		TransformComponent: {
+			Translation: [ -1.000000, 0.750000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Camera
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, 0.000000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		CameraComponent: {
+			Camera: {
+				ProjectionType: 1
+				PerspectiveFOV: 0.785398
+				PerspectiveNear: 0.010000
+				PerspectiveFar: 1000.000000
+				OrthographicSize: 10.000000
+				OrthographicNear: -1.000000
+				OrthographicFar: 1.000000
+			}
+			Primary: false
+			FixedAspectRatio: false
+		}
+	}
+	{
+		Entity: 9785461786987623487
+		TagComponent: {
+			Tag: Background
+		}
+		TransformComponent: {
+			Translation: [ 0.000000, 0.000000, -0.200000 ]
+			Rotation: [ 0.000000, 0.000000, 0.000000 ]
+			Scale: [ 4.000000, 4.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 0.101190, 1.000000, 0.000000, 1.000000 ]
+		}
+	}
+}

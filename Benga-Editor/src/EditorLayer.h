@@ -46,6 +46,8 @@ namespace Benga {
 
 		glm::vec4 m_SquareColor;
 
+		int m_GizmoType = -1;
+
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};

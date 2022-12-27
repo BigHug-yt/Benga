@@ -17,3 +17,6 @@
 [submodule "Benga/vendor/Crayon"]
 	path = Benga/vendor/Crayon
 	url = https://github.com/BigHug-yt/Crayon
+[submodule "Benga/vendor/ImGuizmo"]
+	path = Benga/vendor/ImGuizmo
+	url = https://github.com/TheCherno/ImGuizmo

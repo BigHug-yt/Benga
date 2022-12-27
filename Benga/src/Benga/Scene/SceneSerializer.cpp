@@ -174,7 +174,7 @@ namespace Benga {
 			return false;
 
 		std::string sceneName = data["Scene"].as<std::string>();
-		BG_CORE_TRACE("Deserializing scene '{0}'", sceneName);
+		// BG_CORE_TRACE("Deserializing scene '{0}'", sceneName);
 
 		auto entities = data["Entities"];
 		if (entities) {
@@ -189,7 +189,7 @@ namespace Benga {
 				if (tagComponent)
 					name = tagComponent["Tag"].as<std::string>();
 
-				BG_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
+				// BG_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
 
 				Entity deserializedEntity = m_Scene->CreateEntity(name);
 

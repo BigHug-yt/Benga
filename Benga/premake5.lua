@@ -17,7 +17,10 @@ project "Benga"
 		"vendor/stb_image/**.h",
 		"vendor/stb_image/**.cpp",
 		"vendor/glm/glm/**.inl",
-		"vendor/glm/glm/**.hpp"
+		"vendor/glm/glm/**.hpp",
+
+		"vendor/ImGuizmo/ImGuizmo.h",
+		"vendor/ImGuizmo/ImGuizmo.cpp",
 	}
 
 	defines {
@@ -36,7 +39,8 @@ project "Benga"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.Crayon}"
+		"%{IncludeDir.Crayon}",
+		"%{IncludeDir.ImGuizmo}",
 	}
 
 	links {
@@ -46,6 +50,9 @@ project "Benga"
 		"Crayon",
 		"opengl32.lib"
 	}
+
+	filter "files:vendor/ImGuizmo/**.cpp"
+		flags { "NoPCH" }
 
 	filter "system:windows"
 		systemversion "latest"

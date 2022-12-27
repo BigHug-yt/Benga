@@ -19,7 +19,8 @@ project "Benga-Editor"
 		"%{wks.location}/Benga/src",
 		"%{wks.location}/Benga/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
 	}
 
 	links {
