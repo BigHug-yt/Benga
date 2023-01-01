@@ -1,8 +1,9 @@
 #pragma once
 
-#include "entt.hpp"
-
 #include "Benga/Core/Timestep.h"
+#include "Benga/Renderer/EditorCamera.h"
+
+#include "entt.hpp"
 
 namespace Benga {
 
@@ -17,7 +18,8 @@ namespace Benga {
 		Entity CreateEntity(const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
 		Entity GetPrimaryCameraEntity();

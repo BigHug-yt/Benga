@@ -3,6 +3,8 @@
 #include <Benga.h>
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "Benga/Renderer/EditorCamera.h"
+
 namespace Benga {
 
 	class EditorLayer : public Layer {
@@ -36,6 +38,8 @@ namespace Benga {
 		Entity m_SecondCamera;
 
 		bool m_PrimaryCamera = true;
+
+		EditorCamera m_EditorCamera;
 
 		Ref<Texture2D> m_CheckerboardTexture;
 
