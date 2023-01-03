@@ -7,7 +7,7 @@ namespace Benga {
 	class OpenGLFramebuffer : public Framebuffer {
 
 	public:
-		OpenGLFramebuffer(const FramebufferSpecs& specs);
+		OpenGLFramebuffer(const FramebufferSpec& specs);
 		virtual ~OpenGLFramebuffer();
 
 		void Invalidate();
@@ -17,13 +17,17 @@ namespace Benga {
 		virtual void Bind() override;
 		virtual void UnBind() override;
 
-		virtual uint32_t GetColorAttachmentRendererID() const override { return m_ColorAttachment; };
+		virtual uint32_t GetColorAttachmentRendererID(uint32_t index = 0) const override { BG_CORE_ASSERT(index < m_ColorAttachments.size()); return m_ColorAttachments[index]; };
 
-		virtual const FramebufferSpecs& GetSpecification() const override { return m_Specs; };
+		virtual const FramebufferSpec& GetSpecification() const override { return m_Spec; };
 	private:
 		uint32_t m_RendererID = 0;
-		uint32_t m_ColorAttachment = 0, m_DepthAttachment = 0;
-		FramebufferSpecs m_Specs;
+		FramebufferSpec m_Spec;
 
+		std::vector<FramebufferTextureSpec> m_ColorAttachmentSpecs;
+		FramebufferTextureSpec m_DepthAttachmentSpec = FramebufferTextureFormat::None;
+
+		std::vector<uint32_t> m_ColorAttachments;
+		uint32_t m_DepthAttachment = 0;
 	};
 }

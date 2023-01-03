@@ -7,7 +7,7 @@
 
 namespace Benga {
 
-	Ref<Framebuffer> Framebuffer::Create(const FramebufferSpecs& specs) {
+	Ref<Framebuffer> Framebuffer::Create(const FramebufferSpec& specs) {
 
 		switch (Renderer::GetAPI()) {
 

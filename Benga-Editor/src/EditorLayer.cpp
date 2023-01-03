@@ -25,7 +25,8 @@ namespace Benga {
 
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/checkerboard.png");
 
-		FramebufferSpecs fbSpec;
+		FramebufferSpec fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
@@ -92,7 +93,7 @@ namespace Benga {
 		BG_PROFILE_FUNCTION();
 
 		// Resize
-		FramebufferSpecs specs = m_Framebuffer->GetSpecification();
+		FramebufferSpec specs = m_Framebuffer->GetSpecification();
 		if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero framebuffer is invalid
 			(specs.Width != m_ViewportSize.x || specs.Height != m_ViewportSize.y)) {
 
