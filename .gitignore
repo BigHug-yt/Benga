@@ -12,3 +12,7 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Directories
+Benga-Editor/assets/scenes/*.benga
+scripts/__pycache__
