@@ -2,6 +2,7 @@
 
 #include <Benga.h>
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
 #include "Benga/Renderer/EditorCamera.h"
 
@@ -24,6 +25,7 @@ namespace Benga {
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 		void NewScene();
 		void OpenScene();
+		void OpenScene(const std::filesystem::path& path);
 		void SaveSceneAs();
 	private:
 		OrthoGraphicCameraController m_CameraController;
@@ -58,5 +60,6 @@ namespace Benga {
 
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
+		ContentBrowserPanel m_ContentBrowserPanel;
 	};
 }
