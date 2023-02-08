@@ -8,8 +8,8 @@ namespace Benga {
 	class BengaEditor : public Application {
 
 	public:
-		BengaEditor()
-			: Application("Benga Editor") {
+		BengaEditor(ApplicationCommandLineArgs args)
+			: Application("Benga Editor", args) {
 
 			// PushLayer(new ExampleLayer());
 			PushLayer(new EditorLayer());
@@ -20,8 +20,8 @@ namespace Benga {
 		}
 	};
 
-	Benga::Application* CreateApplication() {
+	Benga::Application* CreateApplication(ApplicationCommandLineArgs args) {
 
-		return new BengaEditor();
+		return new BengaEditor(args);
 	}
 }

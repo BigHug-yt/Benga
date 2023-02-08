@@ -17,10 +17,22 @@ int main(int argc, char** argv);
 
 namespace Benga {
 
+	struct ApplicationCommandLineArgs {
+
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](int index) const {
+
+			BG_CORE_ASSERT(index < Count);
+			return Args[index];
+		}
+	};
+
 	class Application {
 
 	public:
-		Application(const std::string& name = "Benga Engine");
+		Application(const std::string& name = "Benga Engine", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -35,11 +47,14 @@ namespace Benga {
 		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
 		static Application& Get() { return *s_Instance; }
+
+		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
 	private:
 		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 	private:
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
@@ -52,5 +67,5 @@ namespace Benga {
 	};
 
 	// To be defined in client
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 }
