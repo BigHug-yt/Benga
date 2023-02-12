@@ -111,3 +111,11 @@ def UnzipFile(filepath, deleteZipFile=True):
 
 	if deleteZipFile:
 		os.remove(zipFilePath) # delete zip file
+
+def YesOrNo():
+	while True:
+		reply = str(input('[Y/N]: ')).lower().strip()
+		if reply[:1] == 'y':
+			return True
+		if reply[:1] == 'n':
+			return False

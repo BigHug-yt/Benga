@@ -14,5 +14,7 @@ bin-int/
 **.vcxproj.user
 
 # Directories
+Benga/vendor/VulkanSDK
 Benga-Editor/assets/scenes/*.benga
+Benga-Editor/assets/cache
 scripts/__pycache__

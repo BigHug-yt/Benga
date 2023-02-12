@@ -1,17 +1,20 @@
 import os
 import subprocess
-import CheckPython
 import platform
 
-# make sure everything is installed
-CheckPython.ValidatePackages()
+from SetupPython import PythonConfig as PythonRequirements
+
+# make sure everything we need for the setup is installed
+PythonRequirements.Validate()
 
 from SetupPremake import PremakeConfig as PremakeRequirements
+from SetupVulkan import VulkanConfig as VulkanRequirements
 
 # Change from Scripts directory to root directory
 os.chdir('../')
 
 premakeInstalled = PremakeRequirements.Validate()
+VulkanRequirements.Validate()
 
 if (premakeInstalled):
 	if platform.system() == "Windows":

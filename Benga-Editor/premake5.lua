@@ -36,6 +36,11 @@ project "Benga-Editor"
 		runtime "Debug"
 		symbols "on"
 
+		postbuildcommands {
+
+			("{COPY} ../Benga/vendor/VulkanSDK/Bin/shaderc_sharedd.dll ../bin/" .. outputdir .. "/Benga-Editor")
+		}
+
 	filter "configurations:Release"
 		defines "BG_RELEASE"
 		runtime "Release"

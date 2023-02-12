@@ -41,6 +41,7 @@ project "Benga"
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.Crayon}",
 		"%{IncludeDir.ImGuizmo}",
+		"%{IncludeDir.VulkanSDK}",
 	}
 
 	links {
@@ -66,12 +67,33 @@ project "Benga"
 		runtime "Debug"
 		symbols "on"
 
+		links {
+
+			"%{Library.ShaderC_Debug}",
+			"%{Library.SPIRV_Cross_Debug}",
+			"%{Library.SPIRV_Cross_GLSL_Debug}",
+		}
+
 	filter "configurations:Release"
 		defines "BG_RELEASE"
 		runtime "Release"
 		optimize "on"
 
+		links {
+
+			"%{Library.ShaderC_Release}",
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}",
+		}
+
 	filter "configurations:Dist"
 		defines "BG_DIST"
 		runtime "Release"
 		optimize "on"
+		
+		links {
+
+			"%{Library.ShaderC_Release}",
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}",
+		}
