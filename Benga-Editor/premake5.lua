@@ -38,7 +38,7 @@ project "Benga-Editor"
 
 		postbuildcommands {
 
-			("{COPY} ../Benga/vendor/VulkanSDK/Bin/shaderc_sharedd.dll ../bin/" .. outputdir .. "/Benga-Editor")
+			"{COPY} \"%{LibraryDir.VulkanSDK_DebugDLL}\" \"%{cfg.targetdir}\""
 		}
 
 	filter "configurations:Release"
