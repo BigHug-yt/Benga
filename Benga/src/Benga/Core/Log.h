@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Benga/Core/Base.h"
+
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/string_cast.hpp"
-
-#include "Benga/Core/Base.h"
 
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>
