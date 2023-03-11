@@ -20,3 +20,6 @@
 [submodule "Benga/vendor/ImGuizmo"]
 	path = Benga/vendor/ImGuizmo
 	url = https://github.com/TheCherno/ImGuizmo
+[submodule "Benga/vendor/Box2D"]
+	path = Benga/vendor/Box2D
+	url = https://github.com/TheCherno/box2d

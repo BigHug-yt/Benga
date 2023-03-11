@@ -10,6 +10,23 @@
 
 // Implementing Node::as() function for glm::vec3/4
 template <>
+glm::vec2 Crayon::Node::as<glm::vec2>() const {
+	// return t if conversion goes wrong
+	if (!m_IsReal)
+		throw std::exception();
+
+	switch (m_Type) {
+	case NodeType::Scalar: { throw std::exception(); }
+	case NodeType::Tag: { throw std::exception(); }
+	case NodeType::List: {
+		return glm::vec2(m_Keys[0].as<float>(), m_Keys[1].as<float>());
+	}
+	case NodeType::Node: { throw std::exception(); }
+	case NodeType::None: { throw std::exception(); }
+	}
+}
+
+template <>
 glm::vec3 Crayon::Node::as<glm::vec3>() const {
 	// return t if conversion goes wrong
 	if (!m_IsReal)
@@ -44,6 +61,14 @@ glm::vec4 Crayon::Node::as<glm::vec4>() const {
 
 namespace Benga {
 
+	Crayon::Room& operator<<(Crayon::Room& room, const glm::vec2& v) {
+
+		room << Crayon::BeginList;
+		room << v.x << v.y;
+		room << Crayon::EndList;
+		return room;
+	}
+
 	Crayon::Room& operator<<(Crayon::Room& room, const glm::vec3& v) {
 
 		room << Crayon::BeginList;
@@ -58,6 +83,29 @@ namespace Benga {
 		room << v.x << v.y << v.z << v.w;
 		room << Crayon::EndList;
 		return room;
+	}
+
+	static std::string RigidBody2DBodyTypeToString(RigidBody2DComponent::BodyType bodyType) {
+
+		switch (bodyType) {
+
+			case RigidBody2DComponent::BodyType::Static:	return "Static";
+			case RigidBody2DComponent::BodyType::Dynamic:	return "Dynamic";
+			case RigidBody2DComponent::BodyType::Kinematic: return "Kinematic";
+		}
+
+		BG_CORE_ASSERT(false, "Unknown body type");
+		return {};
+	}
+
+	static RigidBody2DComponent::BodyType RigidBody2DBodyTypeFromString(const std::string& bodyTypeString) {
+
+		if (bodyTypeString == "Static")		return RigidBody2DComponent::BodyType::Static;
+		if (bodyTypeString == "Dynamic")	return RigidBody2DComponent::BodyType::Dynamic;
+		if (bodyTypeString == "Kinematic")	return RigidBody2DComponent::BodyType::Kinematic;
+
+		BG_CORE_ASSERT(false, "Unknown body type");
+		return RigidBody2DComponent::BodyType::Static;
 	}
 
 	SceneSerializer::SceneSerializer(const Ref<Scene>& scene) 
@@ -129,6 +177,34 @@ namespace Benga {
 			room << Crayon::Key << "Color" << Crayon::Value << spriteRendererComponent.Color;
 
 			room << Crayon::EndSubset; // SpriteRendererComponent
+		}
+
+		if (entity.HasComponent<RigidBody2DComponent>()) {
+
+			room << Crayon::Key << "RigidBody2DComponent"; // RigidBody2DComponent
+			room << Crayon::Value << Crayon::BeginSubset;
+
+			auto& rb2DComponent = entity.GetComponent<RigidBody2DComponent>();
+			room << Crayon::Key << "BodyType" << Crayon::Value << RigidBody2DBodyTypeToString(rb2DComponent.Type);
+			room << Crayon::Key << "FixedRotation" << Crayon::Value << rb2DComponent.FixedRotation;
+
+			room << Crayon::EndSubset; // RigidBody2DComponent
+		}
+
+		if (entity.HasComponent<BoxCollider2DComponent>()) {
+
+			room << Crayon::Key << "BoxCollider2DComponent"; // BoxCollider2DComponent
+			room << Crayon::Value << Crayon::BeginSubset;
+
+			auto& bc2DComponent = entity.GetComponent<BoxCollider2DComponent>();
+			room << Crayon::Key << "Offset" << Crayon::Value << bc2DComponent.Offset;
+			room << Crayon::Key << "Size" << Crayon::Value << bc2DComponent.Size;
+			room << Crayon::Key << "Density" << Crayon::Value << bc2DComponent.Density;
+			room << Crayon::Key << "Friction" << Crayon::Value << bc2DComponent.Friction;
+			room << Crayon::Key << "Restitution" << Crayon::Value << bc2DComponent.Restitution;
+			room << Crayon::Key << "RestitutionTreshold" << Crayon::Value << bc2DComponent.RestitutionTreshold;
+
+			room << Crayon::EndSubset; // BoxCollider2DComponent
 		}
 
 		room << Crayon::EndSubset; // Entity
@@ -227,6 +303,26 @@ namespace Benga {
 
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
+				}
+
+				auto rigidBody2DComponent = entity["RigidBody2DComponent"];
+				if (rigidBody2DComponent) {
+
+					auto& rb2D = deserializedEntity.AddComponent<RigidBody2DComponent>();
+					rb2D.Type = RigidBody2DBodyTypeFromString(rigidBody2DComponent["BodyType"].as<std::string>());
+					rb2D.FixedRotation = rigidBody2DComponent["FixedRotation"].as<bool>();
+				}
+
+				auto boxCollider2DComponent = entity["BoxCollider2DComponent"];
+				if (boxCollider2DComponent) {
+
+					auto& bc2D = deserializedEntity.AddComponent<BoxCollider2DComponent>();
+					bc2D.Offset = boxCollider2DComponent["Offset"].as<glm::vec2>();
+					bc2D.Size = boxCollider2DComponent["Size"].as<glm::vec2>();
+					bc2D.Density = boxCollider2DComponent["Density"].as<float>();
+					bc2D.Friction = boxCollider2DComponent["Friction"].as<float>();
+					bc2D.Restitution = boxCollider2DComponent["Restitution"].as<float>();
+					bc2D.RestitutionTreshold = boxCollider2DComponent["RestitutionTreshold"].as<float>();
 				}
 			}
 		}

@@ -26,6 +26,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 group "Dependencies"
 	include "vendor/premake"
+	include "Benga/vendor/Box2D"
 	include "Benga/vendor/GLFW"
 	include "Benga/vendor/Glad"
 	include "Benga/vendor/imgui"

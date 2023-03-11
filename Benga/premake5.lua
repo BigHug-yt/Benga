@@ -33,6 +33,7 @@ project "Benga"
 
 		"src",
 		"vendor/spdlog/include",
+		"%{IncludeDir.Box2D}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
@@ -45,6 +46,7 @@ project "Benga"
 	}
 
 	links {
+		"Box2D",
 		"GLFW",
 		"Glad",
 		"ImGui",
