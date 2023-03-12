@@ -1,27 +1,41 @@
 Scene: Untitled
 Entities: {
 	{
-		Entity: 9785461786987623487
+		Entity: 13743420358366807605
 		TagComponent: {
-			Tag: Left
+			Tag: Top
 		}
 		TransformComponent: {
-			Translation: [ -0.350000, 0.000000, 0.350000 ]
-			Rotation: [ 0.000000, -0.785398, 0.000000 ]
-			Scale: [ 1.000000, 1.000000, 1.000000 ]
+			Translation: [ 0.000000, 0.500000, 0.000000 ]
+			Rotation: [ 1.570790, 0.785390, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 0.999989 ]
 		}
 		SpriteRendererComponent: {
-			Color: [ 0.471042, 0.160045, 0.160045, 1.000000 ]
+			Color: [ 1.000000, 0.258680, 0.258680, 1.000000 ]
 		}
 	}
 	{
-		Entity: 9785461786987623487
+		Entity: 1948248154997797902
+		TagComponent: {
+			Tag: Right
+		}
+		TransformComponent: {
+			Translation: [ 0.350000, 0.000000, 0.350000 ]
+			Rotation: [ 0.000000, 0.785390, 0.000000 ]
+			Scale: [ 1.000000, 1.000000, 1.000000 ]
+		}
+		SpriteRendererComponent: {
+			Color: [ 1.000000, 0.000000, 0.000000, 1.000000 ]
+		}
+	}
+	{
+		Entity: 1884970766873071771
 		TagComponent: {
 			Tag: Camera
 		}
 		TransformComponent: {
 			Translation: [ 0.000000, 1.500000, 4.200000 ]
-			Rotation: [ -0.319395, 0.000000, 0.000000 ]
+			Rotation: [ -0.319390, 0.000000, 0.000000 ]
 			Scale: [ 1.000000, 1.000000, 1.000000 ]
 		}
 		CameraComponent: {
@@ -39,31 +53,17 @@ Entities: {
 		}
 	}
 	{
-		Entity: 9785461786987623487
+		Entity: 1622608547668764263
 		TagComponent: {
-			Tag: Right
+			Tag: Left
 		}
 		TransformComponent: {
-			Translation: [ 0.350000, 0.000000, 0.350000 ]
-			Rotation: [ 0.000000, 0.785398, 0.000000 ]
+			Translation: [ -0.350000, 0.000000, 0.350000 ]
+			Rotation: [ 0.000000, -0.785390, 0.000000 ]
 			Scale: [ 1.000000, 1.000000, 1.000000 ]
 		}
 		SpriteRendererComponent: {
-			Color: [ 1.000000, 0.000000, 0.000000, 1.000000 ]
-		}
-	}
-	{
-		Entity: 9785461786987623487
-		TagComponent: {
-			Tag: Top
-		}
-		TransformComponent: {
-			Translation: [ 0.000000, 0.500000, 0.000000 ]
-			Rotation: [ 1.570796, 0.785398, 0.000000 ]
-			Scale: [ 1.000000, 1.000000, 0.999989 ]
-		}
-		SpriteRendererComponent: {
-			Color: [ 1.000000, 0.258687, 0.258687, 1.000000 ]
+			Color: [ 0.471040, 0.160040, 0.160040, 1.000000 ]
 		}
 	}
 }

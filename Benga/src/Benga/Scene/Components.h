@@ -1,16 +1,24 @@
 #pragma once
 
+#include "SceneCamera.h"
+#include "Benga/Core/UUID.h"
+#include "Benga/Renderer/Texture.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-#include "SceneCamera.h"
-#include "ScriptableEntity.h"
-#include "Benga/Renderer/Texture.h"
-
 namespace Benga {
+
+	struct IDComponent {
+
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+	};
 
 	struct TagComponent {
 
@@ -65,6 +73,8 @@ namespace Benga {
 		CameraComponent(const CameraComponent&) = default;
 	};
 
+	// Forward declaration;
+	class ScriptableEntity;
 	struct NativeScriptComponent {
 
 		ScriptableEntity* Instance = nullptr;

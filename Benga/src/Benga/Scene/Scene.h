@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Benga/Core/Timestep.h"
+#include "Benga/Core/UUID.h"
 #include "Benga/Renderer/EditorCamera.h"
 
 #include "entt.hpp"
@@ -18,6 +19,7 @@ namespace Benga {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
 		void OnRuntimeStart();

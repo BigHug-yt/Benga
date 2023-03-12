@@ -116,9 +116,11 @@ namespace Benga {
 
 	static void SerializeEntity(Crayon::Room& room, Entity entity) {
 
+		BG_CORE_ASSERT(entity.HasComponent<IDComponent>());
+
 		room << Crayon::BeginSubset;
-		// TODO: entity ID's
-		room << Crayon::Key << "Entity" << Crayon::Value << "9785461786987623487"; // Entity
+
+		room << Crayon::Key << "Entity" << Crayon::Value << entity.GetUUID(); // Entity
 
 		if (entity.HasComponent<TagComponent>()) {
 
@@ -250,7 +252,6 @@ namespace Benga {
 			return false;
 
 		std::string sceneName = data["Scene"].as<std::string>();
-		// BG_CORE_TRACE("Deserializing scene '{0}'", sceneName);
 
 		auto entities = data["Entities"];
 		if (entities) {
@@ -258,16 +259,14 @@ namespace Benga {
 			auto entities = data["Entities"];
 			for (auto entity : entities) {
 
-				uint64_t uuid = entity["Entity"].as<uint64_t>(); // TODO
+				uint64_t uuid = entity["Entity"].as<uint64_t>();
 
 				std::string name;
 				auto tagComponent = entity["TagComponent"];
 				if (tagComponent)
 					name = tagComponent["Tag"].as<std::string>();
 
-				// BG_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
-
-				Entity deserializedEntity = m_Scene->CreateEntity(name);
+				Entity deserializedEntity = m_Scene->CreateEntityWithUUID(uuid, name);
 
 				auto transformComponent = entity["TransformComponent"];
 				if (transformComponent) {
