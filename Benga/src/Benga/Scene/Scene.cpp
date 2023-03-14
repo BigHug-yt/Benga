@@ -40,6 +40,63 @@ namespace Benga {
 
 	}
 
+	template<typename Component>
+	static void CopyComponent(entt::registry& dest, entt::registry& src, const std::unordered_map<UUID, entt::entity>& enttMap) {
+
+		auto view = src.view<Component>();
+		for (auto e : view) {
+
+			UUID uuid = src.get<IDComponent>(e).ID;
+			BG_CORE_ASSERT(enttMap.find(uuid) != enttMap.end());
+			entt::entity destEnttID = enttMap.at(uuid);
+
+			auto& component = src.get<Component>(e);
+			dest.emplace_or_replace<Component>(destEnttID, component);
+		}
+	}
+
+	template<typename Component>
+	static void CopyComponentIfExists(Entity dest, Entity src) {
+
+		if (src.HasComponent<Component>()) {
+			dest.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+		}
+	}
+
+	Ref<Scene> Scene::Copy(Ref<Scene> other) {
+
+		Ref<Scene> newScene = CreateRef<Scene>();
+
+		newScene->m_ViewportWidth = other->m_ViewportWidth;
+		newScene->m_ViewportHeight = other->m_ViewportHeight;
+
+		std::unordered_map<UUID, entt::entity> enttMap;
+		
+		auto& srcSceneRegistry = other->m_Registry;
+		auto& destSceneRegistry = newScene->m_Registry;
+
+		// Create entities in new Scene
+		auto idView = srcSceneRegistry.view<IDComponent>();
+		for (auto e : idView) {
+
+			UUID uuid = srcSceneRegistry.get<IDComponent>(e).ID;
+			const auto& name = srcSceneRegistry.get<TagComponent>(e).Tag;
+			Entity newEntity = newScene->CreateEntityWithUUID(uuid, name);
+			enttMap[uuid] = (entt::entity)newEntity;
+			
+		}
+
+		// Copy Components (except IDComponent and TagComponent)
+		CopyComponent<TransformComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<SpriteRendererComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CameraComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<NativeScriptComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<RigidBody2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<BoxCollider2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+
+		return newScene;
+	}
+
 	Entity Scene::CreateEntity(const std::string& name) {
 
 		return CreateEntityWithUUID(UUID(), name);
@@ -208,6 +265,19 @@ namespace Benga {
 			if (!cameraComponent.FixedAspectRatio)
 				cameraComponent.Camera.SetViewportSize(width, height);
 		}
+	}
+
+	void Scene::DuplicateEntity(Entity entity) {
+
+		std::string name = entity.GetName();
+		Entity newEntity = CreateEntity(name);
+
+		CopyComponentIfExists<TransformComponent>(newEntity, entity);
+		CopyComponentIfExists<SpriteRendererComponent>(newEntity, entity);
+		CopyComponentIfExists<CameraComponent>(newEntity, entity);
+		CopyComponentIfExists<NativeScriptComponent>(newEntity, entity);
+		CopyComponentIfExists<RigidBody2DComponent>(newEntity, entity);
+		CopyComponentIfExists<BoxCollider2DComponent>(newEntity, entity);
 	}
 
 	Entity Scene::GetPrimaryCameraEntity() {
