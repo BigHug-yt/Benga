@@ -63,6 +63,16 @@ namespace Benga {
 			: Color(color) {}
 	};
 
+	struct CircleRendererComponent {
+
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		float Thickness = 1.0f;
+		float Fade = 0.001f;
+
+		CircleRendererComponent() = default;
+		CircleRendererComponent(const CircleRendererComponent&) = default;
+	};
+
 	struct CameraComponent {
 
 		SceneCamera Camera;

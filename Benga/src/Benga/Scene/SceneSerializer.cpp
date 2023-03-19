@@ -181,6 +181,19 @@ namespace Benga {
 			room << Crayon::EndSubset; // SpriteRendererComponent
 		}
 
+		if (entity.HasComponent<CircleRendererComponent>()) {
+
+			room << Crayon::Key << "CircleRendererComponent"; // SpriteRendererComponent
+			room << Crayon::Value << Crayon::BeginSubset;
+
+			auto& circleRendererComponent = entity.GetComponent<CircleRendererComponent>();
+			room << Crayon::Key << "Color" << Crayon::Value << circleRendererComponent.Color;
+			room << Crayon::Key << "Thickness" << Crayon::Value << circleRendererComponent.Thickness;
+			room << Crayon::Key << "Fade" << Crayon::Value << circleRendererComponent.Fade;
+
+			room << Crayon::EndSubset; // SpriteRendererComponent
+		}
+
 		if (entity.HasComponent<RigidBody2DComponent>()) {
 
 			room << Crayon::Key << "RigidBody2DComponent"; // RigidBody2DComponent
@@ -302,6 +315,15 @@ namespace Benga {
 
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
+				}
+
+				auto circleRendererComponent = entity["CircleRendererComponent"];
+				if (circleRendererComponent) {
+
+					auto& crc = deserializedEntity.AddComponent<CircleRendererComponent>();
+					crc.Color = circleRendererComponent["Color"].as<glm::vec4>();
+					crc.Thickness = circleRendererComponent["Thickness"].as<float>();
+					crc.Fade = circleRendererComponent["Fade"].as<float>();
 				}
 
 				auto rigidBody2DComponent = entity["RigidBody2DComponent"];

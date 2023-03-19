@@ -1,4 +1,7 @@
-// Basic Texture Shader
+// -----------------------------
+// Benga
+// Renderer2D Quad Shader
+// -----------------------------
 
 #type vertex
 #version 430 core
@@ -41,8 +44,8 @@ void main() {
 #type fragment
 #version 430 core
 
-layout(location = 0) out vec4 color;
-layout(location = 1) out int id;
+layout(location = 0) out vec4 o_Color;
+layout(location = 1) out int o_EntityID;
 
 struct VertexOutput {
 	
@@ -97,6 +100,6 @@ void main() {
 		case 31: texColor *= texture(u_Textures[31], Input.TexCoord * Input.TilingFactor); break;
 	}
 
-	color = texColor;
-	id = v_EntityID;
+	o_Color = texColor;
+	o_EntityID = v_EntityID;
 }
