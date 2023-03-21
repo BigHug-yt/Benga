@@ -222,6 +222,22 @@ namespace Benga {
 			room << Crayon::EndSubset; // BoxCollider2DComponent
 		}
 
+		if (entity.HasComponent<CircleCollider2DComponent>()) {
+
+			room << Crayon::Key << "CircleCollider2DComponent"; // CircleCollider2DComponent
+			room << Crayon::Value << Crayon::BeginSubset;
+
+			auto& cc2DComponent = entity.GetComponent<CircleCollider2DComponent>();
+			room << Crayon::Key << "Offset" << Crayon::Value << cc2DComponent.Offset;
+			room << Crayon::Key << "Radius" << Crayon::Value << cc2DComponent.Radius;
+			room << Crayon::Key << "Density" << Crayon::Value << cc2DComponent.Density;
+			room << Crayon::Key << "Friction" << Crayon::Value << cc2DComponent.Friction;
+			room << Crayon::Key << "Restitution" << Crayon::Value << cc2DComponent.Restitution;
+			room << Crayon::Key << "RestitutionTreshold" << Crayon::Value << cc2DComponent.RestitutionTreshold;
+
+			room << Crayon::EndSubset; // CircleCollider2DComponent
+		}
+
 		room << Crayon::EndSubset; // Entity
 	}
 
@@ -344,6 +360,18 @@ namespace Benga {
 					bc2D.Friction = boxCollider2DComponent["Friction"].as<float>();
 					bc2D.Restitution = boxCollider2DComponent["Restitution"].as<float>();
 					bc2D.RestitutionTreshold = boxCollider2DComponent["RestitutionTreshold"].as<float>();
+				}
+
+				auto circleCollider2DComponent = entity["CircleCollider2DComponent"];
+				if (circleCollider2DComponent) {
+
+					auto& cc2D = deserializedEntity.AddComponent<CircleCollider2DComponent>();
+					cc2D.Offset = circleCollider2DComponent["Offset"].as<glm::vec2>();
+					cc2D.Radius = circleCollider2DComponent["Radius"].as<float>();
+					cc2D.Density = circleCollider2DComponent["Density"].as<float>();
+					cc2D.Friction = circleCollider2DComponent["Friction"].as<float>();
+					cc2D.Restitution = circleCollider2DComponent["Restitution"].as<float>();
+					cc2D.RestitutionTreshold = circleCollider2DComponent["RestitutionTreshold"].as<float>();
 				}
 			}
 		}

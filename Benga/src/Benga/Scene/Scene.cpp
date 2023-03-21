@@ -14,6 +14,7 @@
 #include "box2d/b2_body.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_polygon_shape.h"
+#include "box2d/b2_circle_shape.h"
 
 namespace Benga {
 
@@ -94,6 +95,7 @@ namespace Benga {
 		CopyComponent<NativeScriptComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<RigidBody2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<BoxCollider2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CircleCollider2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
 
 		return newScene;
 	}
@@ -151,6 +153,23 @@ namespace Benga {
 				fixtureDef.friction = bc2D.Friction;
 				fixtureDef.restitution = bc2D.Restitution;
 				fixtureDef.restitutionThreshold = bc2D.RestitutionTreshold;
+				body->CreateFixture(&fixtureDef);
+			}
+
+			if (entity.HasComponent<CircleCollider2DComponent>()) {
+
+				auto& cc2D = entity.GetComponent<CircleCollider2DComponent>();
+
+				b2CircleShape circleShape;
+				circleShape.m_p.Set(cc2D.Offset.x, cc2D.Offset.y);
+				circleShape.m_radius = transform.Scale.x * cc2D.Radius; // transform.Scale.y should be the same
+
+				b2FixtureDef fixtureDef;
+				fixtureDef.shape = &circleShape;
+				fixtureDef.density = cc2D.Density;
+				fixtureDef.friction = cc2D.Friction;
+				fixtureDef.restitution = cc2D.Restitution;
+				fixtureDef.restitutionThreshold = cc2D.RestitutionTreshold;
 				body->CreateFixture(&fixtureDef);
 			}
 		}
@@ -308,6 +327,7 @@ namespace Benga {
 		CopyComponentIfExists<NativeScriptComponent>(newEntity, entity);
 		CopyComponentIfExists<RigidBody2DComponent>(newEntity, entity);
 		CopyComponentIfExists<BoxCollider2DComponent>(newEntity, entity);
+		CopyComponentIfExists<CircleCollider2DComponent>(newEntity, entity);
 	}
 
 	Entity Scene::GetPrimaryCameraEntity() {
@@ -364,5 +384,9 @@ namespace Benga {
 
 	template<>
 	void Scene::OnComponentAdded<BoxCollider2DComponent>(Entity entity, BoxCollider2DComponent& component) {
+	}
+
+	template<>
+	void Scene::OnComponentAdded<CircleCollider2DComponent>(Entity entity, CircleCollider2DComponent& component) {
 	}
 }

@@ -155,6 +155,8 @@ namespace Benga {
 			m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 		}
 
+		OnOverlayRender();
+
 		m_Framebuffer->UnBind();
 
 	}
@@ -283,6 +285,10 @@ namespace Benga {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
+		ImGui::End();
+
+		ImGui::Begin("Settings");
+		ImGui::Checkbox("Show physics colliders", &m_ShowPhysicsColliders);
 		ImGui::End();
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
@@ -485,6 +491,58 @@ namespace Benga {
 				m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
 		}
 		return true;
+	}
+
+	void EditorLayer::OnOverlayRender() {
+
+		if (m_SceneState == SceneState::Play) {
+
+			Entity camera = m_ActiveScene->GetPrimaryCameraEntity();
+			Renderer2D::BeginScene(camera.GetComponent<CameraComponent>().Camera, camera.GetComponent<TransformComponent>().GetTransform());
+		}
+		else {
+
+			Renderer2D::BeginScene(m_EditorCamera);
+		}
+
+		if (m_ShowPhysicsColliders) {
+			// Circle Colliders
+			{
+				auto view = m_ActiveScene->GetAllEntitiesWith<TransformComponent, CircleCollider2DComponent>();
+				for (auto entity : view) {
+
+					auto [tc, cc2D] = view.get<TransformComponent, CircleCollider2DComponent>(entity);
+
+					glm::vec3 translation = tc.Translation + glm::vec3(cc2D.Offset, 0.001f);
+					glm::vec3 scale = tc.Scale * glm::vec3(2.0f * cc2D.Radius);
+
+					glm::mat4 transform = glm::translate(glm::mat4(1.0f), translation)
+						* glm::rotate(glm::mat4(1.0f), tc.Rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
+						* glm::scale(glm::mat4(1.0f), scale);
+
+					Renderer2D::DrawCircle(transform, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), 0.05f);
+				}
+			}
+			// Box Colliders
+			{
+				auto view = m_ActiveScene->GetAllEntitiesWith<TransformComponent, BoxCollider2DComponent>();
+				for (auto entity : view) {
+
+					auto [tc, bc2D] = view.get<TransformComponent, BoxCollider2DComponent>(entity);
+
+					glm::vec3 translation = tc.Translation + glm::vec3(bc2D.Offset, 0.001f);
+					glm::vec3 scale = tc.Scale * glm::vec3(bc2D.Size * 2.0f, 1.0f);
+
+					glm::mat4 transform = glm::translate(glm::mat4(1.0f), translation)
+						* glm::rotate(glm::mat4(1.0f), tc.Rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
+						* glm::scale(glm::mat4(1.0f), scale);
+
+					Renderer2D::DrawRect(transform, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+				}
+			}
+		}
+
+		Renderer2D::EndScene();
 	}
 
 	void EditorLayer::NewScene() {

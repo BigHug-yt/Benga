@@ -23,6 +23,9 @@ namespace Benga {
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+
+		void OnOverlayRender();
+
 		void NewScene();
 		void OpenScene();
 		void OpenScene(const std::filesystem::path& path);
@@ -71,6 +74,8 @@ namespace Benga {
 		glm::vec4 m_SquareColor;
 
 		int m_GizmoType = -1;
+
+		bool m_ShowPhysicsColliders = false;
 
 		enum class SceneState {
 
