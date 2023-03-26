@@ -27,6 +27,7 @@ namespace Benga {
 
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/checkerboard.png");
 		m_IconPlay = Texture2D::Create("Resources/Icons/PlayButton.png");
+		m_IconSimulate = Texture2D::Create("Resources/Icons/SimulateButton.png");
 		m_IconStop = Texture2D::Create("Resources/Icons/StopButton.png");
 
 		FramebufferSpec fbSpec;
@@ -35,7 +36,8 @@ namespace Benga {
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
-		m_ActiveScene = CreateRef<Scene>();
+		m_EditorScene = CreateRef<Scene>();
+		m_ActiveScene = m_EditorScene;
 
 		auto commandLineArgs = Application::Get().GetCommandLineArgs();
 		if (commandLineArgs.Count > 1) {
@@ -137,6 +139,14 @@ namespace Benga {
 			case SceneState::Play: {
 
 				m_ActiveScene->OnUpdateRuntime(ts);
+				break;
+			}
+
+			case SceneState::Simulate: {
+
+				m_EditorCamera.OnUpdate(ts);
+
+				m_ActiveScene->OnUpdateSimulation(ts, m_EditorCamera);
 				break;
 			}
 		}
@@ -386,16 +396,34 @@ namespace Benga {
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(buttonActive.x, buttonActive.y, buttonActive.z, 0.5f));
 
 		ImGui::Begin("##toolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-		
-		float size = ImGui::GetWindowHeight() - 4.0f;
-		Ref<Texture2D> icon = m_SceneState == SceneState::Edit ? m_IconPlay : m_IconStop;
-		ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
-		if (ImGui::ImageButton((ImTextureID)icon->GetRendererID(), ImVec2(size, size), ImVec2(0, 0), ImVec2(1, 1), 0)) {
 
-			if (m_SceneState == SceneState::Edit)
-				OnScenePlay();
-			else if (m_SceneState == SceneState::Play)
-				OnSceneStop();
+		bool toolbarEnabled = (bool)m_ActiveScene;
+
+		ImVec4 tintColor = toolbarEnabled ? ImVec4(1.0f, 1.0f, 1.0f, 1.0f) : ImVec4(1.0f, 1.0f, 1.0f, 0.5f);
+
+		float size = ImGui::GetWindowHeight() - 4.0f;
+		{
+			Ref<Texture2D> icon = m_SceneState == SceneState::Play ? m_IconStop : m_IconPlay;
+			ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+			if (ImGui::ImageButton((ImTextureID)icon->GetRendererID(), ImVec2(size, size), ImVec2(0, 0), ImVec2(1, 1), 0, ImVec4(0.0f, 0.0f, 0.0f, 0.0f), tintColor) && toolbarEnabled) {
+
+				if (m_SceneState != SceneState::Play)
+					OnScenePlay();
+				else
+					OnSceneStop();
+			}
+		}
+		ImGui::SameLine();
+		{
+			Ref<Texture2D> icon = m_SceneState == SceneState::Simulate ? m_IconStop : m_IconSimulate;
+			// ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+			if (ImGui::ImageButton((ImTextureID)icon->GetRendererID(), ImVec2(size, size), ImVec2(0, 0), ImVec2(1, 1), 0, ImVec4(0.0f, 0.0f, 0.0f, 0.0f), tintColor) && toolbarEnabled) {
+
+				if (m_SceneState != SceneState::Simulate)
+					OnSceneSimulate();
+				else
+					OnSceneStop();
+			}
 		}
 		ImGui::PopStyleVar(2);
 		ImGui::PopStyleColor(3);
@@ -498,6 +526,8 @@ namespace Benga {
 		if (m_SceneState == SceneState::Play) {
 
 			Entity camera = m_ActiveScene->GetPrimaryCameraEntity();
+			if (!camera)
+				return;
 			Renderer2D::BeginScene(camera.GetComponent<CameraComponent>().Camera, camera.GetComponent<TransformComponent>().GetTransform());
 		}
 		else {
@@ -614,6 +644,9 @@ namespace Benga {
 
 	void EditorLayer::OnScenePlay() {
 
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
+
 		m_SceneState = SceneState::Play;
 
 		m_ActiveScene = Scene::Copy(m_EditorScene);
@@ -622,16 +655,37 @@ namespace Benga {
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
-	void EditorLayer::OnSceneStop() {
+	void EditorLayer::OnSceneSimulate() {
 
-		m_SceneState = SceneState::Edit;
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
 
-		m_ActiveScene->OnRuntimeStop();
-		m_ActiveScene = m_EditorScene;
+		m_SceneState = SceneState::Simulate;
+
+		m_ActiveScene = Scene::Copy(m_EditorScene);
+		m_ActiveScene->OnSimulationStart();
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
+	void EditorLayer::OnSceneStop() {
+
+		BG_CORE_ASSERT(m_SceneState == SceneState::Play || m_SceneState == SceneState::Simulate);
+
+		switch (m_SceneState) {
+
+			case SceneState::Play:
+				m_ActiveScene->OnRuntimeStop();
+			case SceneState::Simulate:
+				m_ActiveScene->OnSimulationStop();
+		}
+
+		m_SceneState = SceneState::Edit;
+
+		m_ActiveScene = m_EditorScene;
+
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
 
 	void EditorLayer::OnDuplicateEntity() {
 

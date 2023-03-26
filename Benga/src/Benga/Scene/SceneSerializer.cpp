@@ -183,7 +183,7 @@ namespace Benga {
 
 		if (entity.HasComponent<CircleRendererComponent>()) {
 
-			room << Crayon::Key << "CircleRendererComponent"; // SpriteRendererComponent
+			room << Crayon::Key << "CircleRendererComponent"; // CircleRendererComponent
 			room << Crayon::Value << Crayon::BeginSubset;
 
 			auto& circleRendererComponent = entity.GetComponent<CircleRendererComponent>();
@@ -191,7 +191,7 @@ namespace Benga {
 			room << Crayon::Key << "Thickness" << Crayon::Value << circleRendererComponent.Thickness;
 			room << Crayon::Key << "Fade" << Crayon::Value << circleRendererComponent.Fade;
 
-			room << Crayon::EndSubset; // SpriteRendererComponent
+			room << Crayon::EndSubset; // CircleRendererComponent
 		}
 
 		if (entity.HasComponent<RigidBody2DComponent>()) {
