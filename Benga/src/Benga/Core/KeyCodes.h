@@ -267,3 +267,4 @@ namespace Benga {
 #define BG_KEY_RIGHT_ALT          ::Benga::Key::RightAlt	
 #define BG_KEY_RIGHT_SUPER        ::Benga::Key::RightSuper	
 #define BG_KEY_MENU               ::Benga::Key::Menu		
+

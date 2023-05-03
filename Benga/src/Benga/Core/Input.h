@@ -9,7 +9,7 @@ namespace Benga {
 
 	enum class Keyboard {
 
-		AZERTY,
+		BelgianPeriod,
 		QWERTY
 	};
 
@@ -24,12 +24,12 @@ namespace Benga {
 		static float GetMouseY();
 
 		static void SetKeyboard(Keyboard keyboard);
-		static Keyboard GetKeyboard() { return s_Keyboard; }
+		static Keyboard GetKeyboard() { return m_Keyboard; }
 
-		static KeyCode KeyCodeToglfw(KeyCode key);
-		static KeyCode glfwToKeyCode(KeyCode key);
+		static int KeyCodeToglfw(KeyCode key);
+		static KeyCode glfwToKeyCode(int key);
 	private:
-		static Keyboard s_Keyboard;
+		static Keyboard m_Keyboard;
 	};
 
 }

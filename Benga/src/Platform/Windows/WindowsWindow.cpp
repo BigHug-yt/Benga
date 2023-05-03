@@ -93,23 +93,25 @@ namespace Benga {
 
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
+			BG_CORE_INFO("Keycode = {0}", key);
+
 			switch (action) {
 
 				case GLFW_PRESS: {
 				
-					KeyPressedEvent event(Input::glfwToKeyCode(static_cast<KeyCode>(key)), 0);
+					KeyPressedEvent event(Input::glfwToKeyCode(key), 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE: {
 
-					KeyReleasedEvent event(Input::glfwToKeyCode(static_cast<KeyCode>(key)));
+					KeyReleasedEvent event(Input::glfwToKeyCode(key));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT: {
 
-					KeyPressedEvent event(Input::glfwToKeyCode(static_cast<KeyCode>(key)), 1);
+					KeyPressedEvent event(Input::glfwToKeyCode(key), 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -120,7 +122,7 @@ namespace Benga {
 
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			KeyTypedEvent event(Input::glfwToKeyCode(static_cast<KeyCode>(keycode)));
+			KeyTypedEvent event(Input::glfwToKeyCode(keycode));
 			data.EventCallback(event);
 		});
 
