@@ -22,4 +22,4 @@
 	url = https://github.com/TheCherno/ImGuizmo
 [submodule "Benga/vendor/Box2D"]
 	path = Benga/vendor/Box2D
-	url = https://github.com/TheCherno/box2d
+	url = https://github.com/BigHug-yt/box2d.git

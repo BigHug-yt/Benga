@@ -38,7 +38,7 @@ class PythonConfig:
 			permissionGranted = (reply == 'y')
 
 		print(f"Installing {packageName} module...")
-		subprocess.check_call(['python', '-m', 'pip', 'install', package])
+		subprocess.check_call(['python', '-m', 'pip', 'install', packageName])
 
 		return cls.__ValidatePackage(packageName)
 
