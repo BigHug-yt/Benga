@@ -103,6 +103,12 @@ namespace Benga {
 
 	void EditorLayer::OnUpdate(Timestep ts) {
 
+		// Keyboard testing (temp)
+
+
+
+		// end Keyboard testing
+
 		BG_PROFILE_FUNCTION();
 
 		// Resize
@@ -250,7 +256,7 @@ namespace Benga {
 
 			if (ImGui::BeginMenu("Keyboard")) {
 
-				const char* keyboardTypeStrings[] = { "AZERTY", "QWERTY" };
+				const char* keyboardTypeStrings[] = { "BelgianPeriod (AZERTY)", "QWERTY" };
 				const char* currentKeyboardTypeString = keyboardTypeStrings[(int)Input::GetKeyboard()];
 				if (ImGui::BeginCombo("Keyboard", currentKeyboardTypeString)) {
 
