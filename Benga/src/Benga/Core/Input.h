@@ -16,7 +16,9 @@ namespace Benga {
 	class Input {
 
 	public:
-		static bool IsKeyPressed(KeyCode key);
+		static bool IsKeyPressed(KeyCode key, bool exact = false);
+		static bool IsKeyEqualTo(KeyCode a, KeyCode b);
+		static bool IsKeyEquivalentTo(KeyCode a, KeyCode b);
 
 		static bool IsMouseButtonPressed(MouseCode button);
 		static glm::vec2 GetMousePosition();
@@ -28,6 +30,9 @@ namespace Benga {
 
 		static int KeyCodeToglfw(KeyCode key);
 		static KeyCode glfwToKeyCode(int key);
+
+		static bool KeyCodeRequiresShift(KeyCode key);
+		static bool KeyCodeRequiresRightAlt(KeyCode key);
 	private:
 		static Keyboard m_Keyboard;
 	};

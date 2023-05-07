@@ -103,12 +103,6 @@ namespace Benga {
 
 	void EditorLayer::OnUpdate(Timestep ts) {
 
-		// Keyboard testing (temp)
-
-
-
-		// end Keyboard testing
-
 		BG_PROFILE_FUNCTION();
 
 		// Resize
@@ -454,22 +448,19 @@ namespace Benga {
 
 		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
 		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
-		switch (e.GetKeyCode()) {
 
-			case Key::N: {
+		// Switch case doesn't work as the == operator for Key's/KeyCodes is overloaded
+		Key pressedKey = e.GetKeyCode();
 
-				if (control)
-					NewScene();
-				break;
-			}
-			case Key::O: {
-
-				if (control)
-					OpenScene();
-				break;
-			}
-			case Key::S: {
-
+		if (Input::IsKeyEquivalentTo(pressedKey, Key::N)) {
+			if (control)
+				NewScene();
+		}
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::O)) {
+			if (control)
+				OpenScene();
+		}
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::S)) {
 				if (control) {
 
 					if (shift)
@@ -477,42 +468,30 @@ namespace Benga {
 					else
 						SaveScene();
 				}
-				break;
-			}
+		}
 
-			// Scene Commands
-			case Key::D: {
+		// Scene Commands
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::D)) {
+			if (control)
+				OnDuplicateEntity();
+		}
 
-				if (control)
-					OnDuplicateEntity();
-				break;
-			}
-
-			// Gizmos
-			case Key::A: {
-
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = -1;
-				break;
-			}
-			case Key::Z: {
-
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
-				break;
-			}
-			case Key::E: {
-
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::OPERATION::ROTATE;
-				break;
-			}
-			case Key::R: {
-
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::OPERATION::SCALE;
-				break;
-			}
+		// Gizmos
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::A)) {
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = -1;
+		}
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::Z)) {
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
+		}
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::E)) {
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
+		}
+		else if (Input::IsKeyEquivalentTo(pressedKey, Key::R)) {
+			if (!ImGuizmo::IsUsing())
+				m_GizmoType = ImGuizmo::OPERATION::SCALE;
 		}
 	}
 

@@ -2,11 +2,21 @@
 
 namespace Benga {
 
-	typedef enum class KeyCode : uint16_t {
+	typedef enum class KeyCode {
 
-		// From glfw3.h
-		Space				= 32,
+		// ASCII
+		Space				= 32, /* space */
+		ExclamationMark		= 33, /* ! */
+		DoubleQuotes		= 34, /* " */
+		Hash				= 35, /* # */
+		DollarSign			= 36, /* # */
+		Percent				= 37, /* % */
+		Ampersand			= 38, /* & */
 		Apostrophe			= 39, /* ' */
+		LeftParenthesis		= 40, /* ( */
+		RightParenthesis	= 41, /* ) */
+		Asterix				= 42, /* * */
+		Plus				= 43, /* + */
 		Comma				= 44, /* , */
 		Minus				= 45, /* - */
 		Period				= 46, /* . */
@@ -23,8 +33,13 @@ namespace Benga {
 		D8					= 56, /* 8 */
 		D9					= 57, /* 9 */
 
+		Colon				= 58, /* : */
 		Semicolon			= 59, /* ; */
+		LeftAngledBracket	= 60, /* < */
 		Equal				= 61, /* = */
+		RightAngledBracket	= 62, /* > */
+		QuestionMark		= 63, /* ? */
+		AtSign				= 64, /* @ */
 
 		A					= 65,
 		B					= 66,
@@ -53,15 +68,64 @@ namespace Benga {
 		Y					= 89,
 		Z					= 90,
 
-		LeftBracket			= 91,  /* [ */
-		Backslash			= 92,  /* \ */
-		RightBracket		= 93,  /* ] */
-		GraveAccent			= 96,  /* ` */
-		
-		World1				= 161, /* non-US #1 */
-		World2				= 162, /* non-US #2 */
+		LeftSquareBracket	= 91, /* [ */
+		Backslash			= 92, /* \ */
+		RightSquareBracket	= 93, /* ] */
+		Caret				= 94, /* ^ */
+		Underscore			= 95, /* _ */
+		GraveAccent			= 96, /* ` */
 
-		/* Function keys*/
+		// glfw outputs only capital letters, but this is still handy
+		a					= 97,
+		b					= 98,
+		c					= 99,
+		d					= 100,
+		e					= 101,
+		f					= 102,
+		g					= 103,
+		h					= 104,
+		i					= 105,
+		j					= 106,
+		k					= 107,
+		l					= 108,
+		m					= 109,
+		n					= 110,
+		o					= 111,
+		p					= 112,
+		q					= 113,
+		r					= 114,
+		s					= 115,
+		t					= 116,
+		u					= 117,
+		v					= 118,
+		w					= 119,
+		x					= 120,
+		y					= 121,
+		z					= 122,
+		
+		LeftCurlyBracket	= 123, /* { */
+		VerticalBar			= 124, /* | */
+		RightCurlyBracket	= 125, /* } */
+		Tilde				= 126, /* ~ */
+		
+		// Selection of extended ASCII from https://www.ascii-code.com/
+		EuroSign			= 128, /* € */
+		SmallLigatureOe		= 156, /* œ */
+		PoundSign			= 163, /* £ */
+		SectionSign			= 167, /* § */
+		Umlaut				= 168, /* ¨ */
+		DegreeSign			= 176, /* ° */
+		SuperscriptTwo		= 178, /* ² */
+		SuperscriptThree	= 179, /* ³ */
+		AcuteAccent			= 180, /* ´ */
+		MicroSign			= 181, /* µ */
+		aGrave				= 192, /* à */
+		cCedilla			= 199, /* ç */
+		eGrave				= 200, /* è */
+		eAcute				= 201, /* é */
+		uGrave				= 217, /* ù */
+		
+		// Function Keys (extended ASCII goes up to 255, so everything above is fine)
 		Escape				= 256,
 		Enter				= 257,
 		Tab					= 258,
@@ -134,7 +198,10 @@ namespace Benga {
 		RightControl		= 345,
 		RightAlt			= 346,
 		RightSuper			= 347,
-		Menu				= 348
+		Menu				= 348,
+
+		Unknown				= -1,	/* means it's not possible to get that keycode on the current keyboard layout */
+
 	} Key;
 
 	inline std::ostream& operator<<(std::ostream& os, KeyCode keyCode) {
@@ -266,5 +333,6 @@ namespace Benga {
 #define BG_KEY_RIGHT_CONTROL      ::Benga::Key::RightControl
 #define BG_KEY_RIGHT_ALT          ::Benga::Key::RightAlt	
 #define BG_KEY_RIGHT_SUPER        ::Benga::Key::RightSuper	
-#define BG_KEY_MENU               ::Benga::Key::Menu		
+#define BG_KEY_MENU               ::Benga::Key::Menu	
 
+#define BG_KEY_UNKNOWN            ::Benga::Key::Unknown	

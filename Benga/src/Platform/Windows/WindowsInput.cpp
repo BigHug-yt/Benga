@@ -11,12 +11,33 @@ namespace Benga {
 
 	Keyboard Input::m_Keyboard = Keyboard::BelgianPeriod;
 
-	bool Input::IsKeyPressed(KeyCode key) {
+	bool Input::IsKeyPressed(KeyCode key, bool exact) {
 
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		int glfwKey = KeyCodeToglfw(key);
 		auto state = glfwGetKey(window, (glfwKey));
+		if (exact) {
+			if (KeyCodeRequiresRightAlt(key) != Input::IsKeyPressed(KeyCode::RightAlt))
+				return false;
+			if (KeyCodeRequiresShift(key) != (Input::IsKeyPressed(KeyCode::LeftShift) || Input::IsKeyPressed(KeyCode::RightShift)))
+				return false;
+		}
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
+	}
+
+	// Only returns true when KeyCodes are exactly equal
+	bool Input::IsKeyEqualTo(KeyCode a, KeyCode b) {
+
+		return a == b;
+	}
+	
+	// Returns true f.e. when comparing 'a' and 'A' (keyboard dependent)
+	bool Input::IsKeyEquivalentTo(KeyCode a, KeyCode b) {
+
+		int a_glfw = Input::KeyCodeToglfw(a);
+		int b_glfw = Input::KeyCodeToglfw(b);
+		bool result = a_glfw == b_glfw;
+		return a_glfw == b_glfw;
 	}
 
 	bool Input::IsMouseButtonPressed(MouseCode button) {
@@ -54,7 +75,7 @@ namespace Benga {
 
 		switch (m_Keyboard) {
 
-			case Keyboard::QWERTY:	return QWERTYKeyboard::KeyCodeToglfw(key);
+			case Keyboard::QWERTY:			return QWERTYKeyboard::KeyCodeToglfw(key);
 			case Keyboard::BelgianPeriod:	return BelgianPeriodKeyboard::KeyCodeToglfw(key);
 		}
 
@@ -66,7 +87,7 @@ namespace Benga {
 
 		switch (m_Keyboard) {
 
-			case Keyboard::QWERTY:	return QWERTYKeyboard::glfwToKeyCode(key);
+			case Keyboard::QWERTY:			return QWERTYKeyboard::glfwToKeyCode(key);
 			case Keyboard::BelgianPeriod:	return BelgianPeriodKeyboard::glfwToKeyCode(key);
 		}
 
@@ -74,4 +95,24 @@ namespace Benga {
 		return (KeyCode)0;
 	}
 
+	bool Input::KeyCodeRequiresShift(KeyCode key) {
+
+		switch (m_Keyboard) {
+			case Keyboard::QWERTY:			return QWERTYKeyboard::KeyCodeRequiresShift(key);
+			case Keyboard::BelgianPeriod:	return BelgianPeriodKeyboard::KeyCodeRequiresShift(key);
+		}
+
+		BG_CORE_ASSERT(false, "Unknown Keyboard!");
+		return false;
+	}
+	bool Input::KeyCodeRequiresRightAlt(KeyCode key) {
+
+		switch (m_Keyboard) {
+			case Keyboard::QWERTY:			return QWERTYKeyboard::KeyCodeRequiresRightAlt(key);
+			case Keyboard::BelgianPeriod:	return BelgianPeriodKeyboard::KeyCodeRequiresRightAlt(key);
+		}
+
+		BG_CORE_ASSERT(false, "Unknown Keyboard!");
+		return false;
+	}
 }

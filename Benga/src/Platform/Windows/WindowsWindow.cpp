@@ -93,8 +93,6 @@ namespace Benga {
 
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			BG_CORE_INFO("Keycode = {0}", key);
-
 			switch (action) {
 
 				case GLFW_PRESS: {
