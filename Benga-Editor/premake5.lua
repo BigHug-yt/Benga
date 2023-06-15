@@ -36,11 +36,6 @@ project "Benga-Editor"
 		runtime "Debug"
 		symbols "on"
 
-		postbuildcommands {
-
-			"{COPY} \"%{LibraryDir.VulkanSDK_DebugDLL}\" \"%{cfg.targetdir}\""
-		}
-
 	filter "configurations:Release"
 		defines "BG_RELEASE"
 		runtime "Release"

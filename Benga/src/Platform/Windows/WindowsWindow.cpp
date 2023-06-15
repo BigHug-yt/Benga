@@ -97,7 +97,7 @@ namespace Benga {
 
 				case GLFW_PRESS: {
 				
-					KeyPressedEvent event(Input::glfwToKeyCode(key), 0);
+					KeyPressedEvent event(Input::glfwToKeyCode(key), false);
 					data.EventCallback(event);
 					break;
 				}
@@ -109,7 +109,7 @@ namespace Benga {
 				}
 				case GLFW_REPEAT: {
 
-					KeyPressedEvent event(Input::glfwToKeyCode(key), 1);
+					KeyPressedEvent event(Input::glfwToKeyCode(key), true);
 					data.EventCallback(event);
 					break;
 				}

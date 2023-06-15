@@ -22,7 +22,7 @@ namespace Benga {
 			if (KeyCodeRequiresShift(key) != (Input::IsKeyPressed(KeyCode::LeftShift) || Input::IsKeyPressed(KeyCode::RightShift)))
 				return false;
 		}
-		return state == GLFW_PRESS || state == GLFW_REPEAT;
+		return state == GLFW_PRESS;
 	}
 
 	// Only returns true when KeyCodes are exactly equal

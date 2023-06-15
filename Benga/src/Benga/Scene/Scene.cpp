@@ -41,27 +41,44 @@ namespace Benga {
 		delete m_PhysicsWorld;
 	}
 
-	template<typename Component>
-	static void CopyComponent(entt::registry& dest, entt::registry& src, const std::unordered_map<UUID, entt::entity>& enttMap) {
+	template<typename... Component>
+	static void CopyComponent(entt::registry& dst, entt::registry& src, const std::unordered_map<UUID, entt::entity>& enttMap) {
+		([&]() {
 
-		auto view = src.view<Component>();
-		for (auto e : view) {
+			auto view = src.view<Component>();
+			for (auto e : view) {
 
-			UUID uuid = src.get<IDComponent>(e).ID;
-			BG_CORE_ASSERT(enttMap.find(uuid) != enttMap.end());
-			entt::entity destEnttID = enttMap.at(uuid);
+				UUID uuid = src.get<IDComponent>(e).ID;
+				BG_CORE_ASSERT(enttMap.find(uuid) != enttMap.end());
+				entt::entity destEnttID = enttMap.at(uuid);
 
-			auto& component = src.get<Component>(e);
-			dest.emplace_or_replace<Component>(destEnttID, component);
-		}
+				auto& component = src.get<Component>(e);
+				dst.emplace_or_replace<Component>(destEnttID, component);
+			}
+
+		}(), ...);
 	}
 
-	template<typename Component>
-	static void CopyComponentIfExists(Entity dest, Entity src) {
+	template<typename... Component>
+	static void CopyComponent(ComponentGroup<Component...>, entt::registry& dst, entt::registry& src, const std::unordered_map<UUID, entt::entity>& enttMap) {
+		CopyComponent<Component...>(dst, src, enttMap);
+	}
 
-		if (src.HasComponent<Component>()) {
-			dest.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
-		}
+	template<typename... Component>
+	static void CopyComponentIfExists(Entity dst, Entity src) {
+
+		([&]() {
+
+			if (src.HasComponent<Component>()) {
+				dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+			}
+
+		}(), ...);
+	}
+
+	template<typename... Component>
+	static void CopyComponentIfExists(ComponentGroup<Component...>, Entity dst, Entity src) {
+		CopyComponentIfExists<Component...>(dst, src);
 	}
 
 	Ref<Scene> Scene::Copy(Ref<Scene> other) {
@@ -74,7 +91,7 @@ namespace Benga {
 		std::unordered_map<UUID, entt::entity> enttMap;
 		
 		auto& srcSceneRegistry = other->m_Registry;
-		auto& destSceneRegistry = newScene->m_Registry;
+		auto& dstSceneRegistry = newScene->m_Registry;
 
 		// Create entities in new Scene
 		auto idView = srcSceneRegistry.view<IDComponent>();
@@ -88,14 +105,7 @@ namespace Benga {
 		}
 
 		// Copy Components (except IDComponent and TagComponent)
-		CopyComponent<TransformComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<SpriteRendererComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<CircleRendererComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<CameraComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<NativeScriptComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<RigidBody2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<BoxCollider2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
-		CopyComponent<CircleCollider2DComponent>(destSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent(AllComponents{}, dstSceneRegistry, srcSceneRegistry, enttMap);
 
 		return newScene;
 	}
@@ -280,17 +290,9 @@ namespace Benga {
 
 	void Scene::DuplicateEntity(Entity entity) {
 
-		std::string name = entity.GetName();
-		Entity newEntity = CreateEntity(name);
+		Entity newEntity = CreateEntity(entity.GetName());
 
-		CopyComponentIfExists<TransformComponent>(newEntity, entity);
-		CopyComponentIfExists<SpriteRendererComponent>(newEntity, entity);
-		CopyComponentIfExists<CircleRendererComponent>(newEntity, entity);
-		CopyComponentIfExists<CameraComponent>(newEntity, entity);
-		CopyComponentIfExists<NativeScriptComponent>(newEntity, entity);
-		CopyComponentIfExists<RigidBody2DComponent>(newEntity, entity);
-		CopyComponentIfExists<BoxCollider2DComponent>(newEntity, entity);
-		CopyComponentIfExists<CircleCollider2DComponent>(newEntity, entity);
+		CopyComponentIfExists(AllComponents{}, newEntity, entity);
 	}
 
 	Entity Scene::GetPrimaryCameraEntity() {
@@ -330,7 +332,7 @@ namespace Benga {
 				auto& bc2D = entity.GetComponent<BoxCollider2DComponent>();
 
 				b2PolygonShape boxShape;
-				boxShape.SetAsBox(bc2D.Size.x * transform.Scale.x, bc2D.Size.y * transform.Scale.y);
+				boxShape.SetAsBox(bc2D.Size.x * transform.Scale.x, bc2D.Size.y * transform.Scale.y, b2Vec2(bc2D.Offset.x, bc2D.Offset.y), 0.0f);
 
 				b2FixtureDef fixtureDef;
 				fixtureDef.shape = &boxShape;
@@ -397,7 +399,8 @@ namespace Benga {
 
 	template<typename T>
 	void Scene::OnComponentAdded(Entity entity, T& component) {
-		static_assert(false);
+
+		static_assert(sizeof(T) == 0);
 	}
 
 	template<>

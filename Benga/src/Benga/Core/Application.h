@@ -29,10 +29,17 @@ namespace Benga {
 		}
 	};
 
+	struct ApplicationSpec {
+
+		std::string Name = "Benga application";
+		std::string WorkingDirectory;
+		ApplicationCommandLineArgs CommandLineArgs;
+	};
+
 	class Application {
 
 	public:
-		Application(const std::string& name = "Benga Engine", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
+		Application(const ApplicationSpec& spec);
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -48,13 +55,13 @@ namespace Benga {
 
 		static Application& Get() { return *s_Instance; }
 
-		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+		const ApplicationSpec& GetSpec() const { return m_Spec; }
 	private:
 		void Run();
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 	private:
-		ApplicationCommandLineArgs m_CommandLineArgs;
+		ApplicationSpec m_Spec;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;

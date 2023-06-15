@@ -177,6 +177,9 @@ namespace Benga {
 
 			auto& spriteRendererComponent = entity.GetComponent<SpriteRendererComponent>();
 			room << Crayon::Key << "Color" << Crayon::Value << spriteRendererComponent.Color;
+			if (spriteRendererComponent.Texture)
+				room << Crayon::Key << "TexturePath" << Crayon::Value << spriteRendererComponent.Texture->GetPath();
+			room << Crayon::Key << "TilingFactor" << Crayon::Value << spriteRendererComponent.TilingFactor;
 
 			room << Crayon::EndSubset; // SpriteRendererComponent
 		}
@@ -331,6 +334,12 @@ namespace Benga {
 
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
+
+					if (spriteRendererComponent["TexturePath"])
+						src.Texture = Texture2D::Create(spriteRendererComponent["TexturePath"].as<std::string>());
+
+					if (spriteRendererComponent["TilingFactor"])
+						src.TilingFactor = spriteRendererComponent["TilingFactor"].as<float>();
 				}
 
 				auto circleRendererComponent = entity["CircleRendererComponent"];

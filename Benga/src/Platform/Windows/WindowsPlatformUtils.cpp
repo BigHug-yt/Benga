@@ -50,4 +50,9 @@ namespace Benga {
 			return ofn.lpstrFile;
 		return std::string();
 	}
+
+	float Time::GetTime() {
+
+		return glfwGetTime();
+	}
 }

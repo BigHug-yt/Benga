@@ -39,7 +39,7 @@ namespace Benga {
 		m_EditorScene = CreateRef<Scene>();
 		m_ActiveScene = m_EditorScene;
 
-		auto commandLineArgs = Application::Get().GetCommandLineArgs();
+		auto commandLineArgs = Application::Get().GetSpec().CommandLineArgs;
 		if (commandLineArgs.Count > 1) {
 
 			auto sceneFilePath = commandLineArgs[1];
@@ -49,51 +49,7 @@ namespace Benga {
 
 		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
-#if 0
-		Entity square = m_ActiveScene->CreateEntity("Yellow Square");
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 1.0f, 0.0f, 1.0f });
-
-		Entity redSquare = m_ActiveScene->CreateEntity("Red Square");
-		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
-
-		m_SquareEntity = square;
-
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
-		m_CameraEntity.AddComponent<CameraComponent>();
-
-		m_SecondCamera = m_ActiveScene->CreateEntity("Camera B");
-		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
-		cc.Primary = false;
-
-		class CameraController : public ScriptableEntity {
-
-		public:
-			void OnCreate() {
-
-			}
-
-			void OnDestroy() {
-
-			}
-
-			void OnUpdate(Timestep ts) {
-
-				auto& transform = GetComponent<TransformComponent>().Translation;
-				float speed = 5.0f;
-
-				if (Input::IsKeyPressed(KeyCode::Q))
-					transform.x -= speed * ts;
-				if (Input::IsKeyPressed(KeyCode::D))
-					transform.x += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::Z))
-					transform.y += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::S))
-					transform.y -= speed * ts;
-			}
-		};
-
-		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-#endif
+		Renderer2D::SetLineWidth(2.0f);
 	}
 
 	void EditorLayer::OnDetach() {
@@ -238,6 +194,10 @@ namespace Benga {
 				if (ImGui::MenuItem("Open...", "Ctrl+O")) {
 
 					OpenScene();
+				}
+				if (ImGui::MenuItem("Save", "Ctrl+S")) {
+
+					SaveScene();
 				}
 				if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S")) {
 
@@ -433,7 +393,11 @@ namespace Benga {
 	void EditorLayer::OnEvent(Event& e) {
 
 		m_CameraController.OnEvent(e);
-		m_EditorCamera.OnEvent(e);
+
+		if (m_SceneState == SceneState::Edit) {
+
+			m_EditorCamera.OnEvent(e);
+		}
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(BG_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
@@ -443,7 +407,7 @@ namespace Benga {
 	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e) {
 
 		// Shortcuts
-		if (e.GetRepeatCount() > 0)
+		if (e.IsRepeat())
 			return false;
 
 		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
@@ -531,8 +495,9 @@ namespace Benga {
 					glm::vec3 translation = tc.Translation + glm::vec3(cc2D.Offset, 0.001f);
 					glm::vec3 scale = tc.Scale * glm::vec3(2.0f * cc2D.Radius);
 
-					glm::mat4 transform = glm::translate(glm::mat4(1.0f), translation)
+					glm::mat4 transform = glm::translate(glm::mat4(1.0f), tc.Translation)
 						* glm::rotate(glm::mat4(1.0f), tc.Rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
+						* glm::translate(glm::mat4(1.0f), glm::vec3(cc2D.Offset, 0.001f))
 						* glm::scale(glm::mat4(1.0f), scale);
 
 					Renderer2D::DrawCircle(transform, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), 0.05f);
@@ -548,13 +513,21 @@ namespace Benga {
 					glm::vec3 translation = tc.Translation + glm::vec3(bc2D.Offset, 0.001f);
 					glm::vec3 scale = tc.Scale * glm::vec3(bc2D.Size * 2.0f, 1.0f);
 
-					glm::mat4 transform = glm::translate(glm::mat4(1.0f), translation)
+					glm::mat4 transform = glm::translate(glm::mat4(1.0f), tc.Translation)
 						* glm::rotate(glm::mat4(1.0f), tc.Rotation.z, glm::vec3(0.0f, 0.0f, 1.0f))
+						* glm::translate(glm::mat4(1.0f), glm::vec3(bc2D.Offset, 0.001f))
 						* glm::scale(glm::mat4(1.0f), scale);
 
 					Renderer2D::DrawRect(transform, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 				}
 			}
+		}
+
+		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
+		if (selectedEntity) {
+
+			const TransformComponent& transform = selectedEntity.GetComponent<TransformComponent>();
+			Renderer2D::DrawRect(transform.GetTransform(), glm::vec4(0.3f, 0.7f, 0.0f, 1.0f));
 		}
 
 		Renderer2D::EndScene();

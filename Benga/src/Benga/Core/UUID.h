@@ -1,7 +1,5 @@
 #pragma once
 
-#include <xhash>
-
 namespace Benga {
 
 	class UUID {
@@ -19,13 +17,16 @@ namespace Benga {
 }
 
 namespace std {
+	
+	template<typename T> struct hash;
 
 	template<>
 	struct hash<Benga::UUID> {
 
 		std::size_t operator()(const Benga::UUID& uuid) const {
 
-			return hash<uint64_t>()((uint64_t)uuid);
+			// UUID's should already be uniformly distributed, no need for hashing.
+			return (uint64_t)uuid;
 		}
 	};
 }
