@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Benga/Core//PlatformDetection.h"
+#include "Benga/Core/PlatformDetection.h"
 
 #ifdef BG_PLATFORM_WINDOWS
 	#ifndef NOMINMAX
