@@ -4,6 +4,7 @@
 #include "Benga/Core/Log.h"
 
 #include "Benga/Renderer/Renderer.h"
+#include "Benga/Scripting/ScriptEngine.h"
 
 #include "Benga/Core/Input.h"
 
@@ -29,6 +30,7 @@ namespace Benga {
 		m_Window->SetEventCallback(BG_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
+		ScriptEngine::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -38,6 +40,7 @@ namespace Benga {
 
 		BG_PROFILE_FUNCTION();
 
+		ScriptEngine::Shutdown();
 		Renderer::Shutdown();
 	}
 

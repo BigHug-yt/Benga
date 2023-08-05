@@ -33,6 +33,15 @@ group "Dependencies"
 	include "Benga/vendor/Crayon"
 group ""
 
-include "Benga"
-include "Sandbox"
-include "Benga-Editor"
+group "Core"
+	include "Benga"
+	include "Benga-ScriptCore"
+group ""
+
+group "Tools"
+	include "Benga-Editor"
+group ""
+
+group "Misc"
+	include "Sandbox"
+group ""

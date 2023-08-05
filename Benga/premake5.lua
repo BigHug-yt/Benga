@@ -40,6 +40,7 @@ project "Benga"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
+		"%{IncludeDir.mono}",
 		"%{IncludeDir.Crayon}",
 		"%{IncludeDir.ImGuizmo}",
 		"%{IncludeDir.VulkanSDK}",
@@ -51,7 +52,9 @@ project "Benga"
 		"Glad",
 		"ImGui",
 		"Crayon",
-		"opengl32.lib"
+		"opengl32.lib",
+
+		"%{Library.mono}",
 	}
 
 	filter "files:vendor/ImGuizmo/**.cpp"
@@ -62,6 +65,13 @@ project "Benga"
 
 		defines {
 
+		}
+
+		links {
+			"%{Library.WinSock}",
+			"%{Library.Winmm}",
+			"%{Library.WinVersion}",
+			"%{Library.BCrypt}",
 		}
 
 	filter "configurations:Debug"

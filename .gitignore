@@ -2,6 +2,7 @@
 **/bin/
 !vendor/premake/bin/
 bin-int/
+Intermediates/
 
 # Benga files
 *.log
@@ -12,6 +13,8 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+**.csproj
+**.csproj.user
 
 # Directories
 Benga/vendor/VulkanSDK
